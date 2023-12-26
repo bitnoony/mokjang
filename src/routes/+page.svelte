@@ -1,11 +1,10 @@
 <script>
-	// your script goes here
 </script>
 
 <h1>
 	메인
 </h1>
+<a href="./login" class="">login</a>
 
 <style>
-	/* your styles go here */
 </style>

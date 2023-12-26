@@ -1,40 +1,28 @@
 <script>
+	import "bootstrap/dist/css/bootstrap.css";
+	import "@fortawesome/fontawesome-free/css/all.min.css";
 	import { supabase } from "$lib/supabaseClient";
-	import { enhance } from '$app/forms';
 
 	async function googleLogin() {
 		const { data, error } = await supabase.auth.signInWithOAuth({
-			provider: "google",
+			provider: 'google',
 			options: {
 				queryParams: {
-					access_type: "offline",
-					prompt: "consent",
+					access_type: 'offline',
+					prompt: 'consent',
 				},
-				redirectTo: "/mokjang",
-				skipBrowserRedirect: false
+				redirectTo: "http://localhost:5173/mokjang/",
 			},
-		});
-
-		console.log("구글 로그인 후 얻는 데이터", data, error);
-	}
-
-	const submit = async ({action, cancel}) => {
-		const { data, error } = await supabase.auth.signInWithOAuth({
-			provider: 'google'
-		});
-
-		cancel();
+		})
 	}
 </script>
 
 <main class="card">
 	<div>
 		<h1>MOKJANG</h1>
-		<form method="POST">
-			<button class="btn btn-lg btn-primary" formaction="?/login">
-				<i class="fa-brands fa-google"></i> 구글 로그인
-			</button>
-		</form>
+		<button class="btn btn-lg btn-primary" on:click={googleLogin}>
+			<i class="fa-brands fa-google"></i> 구글 로그인
+		</button>
 	</div>
 </main>
 
