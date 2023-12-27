@@ -1,9 +1,9 @@
 import { supabase } from "$lib/supabaseClient";
 
 export async function load() {
-	const {
-		data: { user },
-	} = await supabase.auth.getUser();
+	// const {
+	// 	data: { user },
+	// } = await supabase.auth.getUser();
 	// console.log(user);
 
 	// 최상위 레이아웃 js 인데,
