@@ -381,8 +381,8 @@
     },
     {
       "type": "text",
-      "version": 537,
-      "versionNonce": 1133137616,
+      "version": 546,
+      "versionNonce": 1773203931,
       "isDeleted": false,
       "id": "-Agdfl7t-Kzm1NN_AKu8X",
       "fillStyle": "solid",
@@ -402,7 +402,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1703597001388,
+      "updated": 1703849673612,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -557,8 +557,8 @@
     },
     {
       "type": "text",
-      "version": 925,
-      "versionNonce": 1869281840,
+      "version": 944,
+      "versionNonce": 2071194965,
       "isDeleted": false,
       "id": "wayd1Ae4y4cpuqMw7jkeh",
       "fillStyle": "solid",
@@ -578,7 +578,7 @@
       "frameId": null,
       "roundness": null,
       "boundElements": [],
-      "updated": 1703597001388,
+      "updated": 1703849673614,
       "link": null,
       "locked": false,
       "fontSize": 20,
@@ -12668,42 +12668,6 @@
       "baseline": 24
     },
     {
-      "type": "text",
-      "version": 167,
-      "versionNonce": 1142970416,
-      "isDeleted": false,
-      "id": "qZDpT1hGFqixa6LuCZA2a",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 1,
-      "opacity": 100,
-      "angle": 0,
-      "x": 7002.38333764471,
-      "y": 219.921577688316,
-      "strokeColor": "#1e1e1e",
-      "backgroundColor": "transparent",
-      "width": 234,
-      "height": 90,
-      "seed": 1558626512,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "boundElements": [],
-      "updated": 1703597001388,
-      "link": null,
-      "locked": false,
-      "fontSize": 36,
-      "fontFamily": 1,
-      "text": "보내주신 링크\n",
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "originalText": "보내주신 링크\n",
-      "lineHeight": 1.25,
-      "baseline": 76
-    },
-    {
       "type": "rectangle",
       "version": 492,
       "versionNonce": 484157648,
@@ -13717,12 +13681,7 @@
       "roundness": {
         "type": 2
       },
-      "boundElements": [
-        {
-          "type": "text",
-          "id": "3HYc3IjB6xQp0miaZW4sr"
-        }
-      ],
+      "boundElements": [],
       "updated": 1703597001389,
       "link": null,
       "locked": false,
@@ -13852,12 +13811,7 @@
       "roundness": {
         "type": 2
       },
-      "boundElements": [
-        {
-          "type": "text",
-          "id": "CemPUHdQVOk54FmXvFDxQ"
-        }
-      ],
+      "boundElements": [],
       "updated": 1703597001389,
       "link": null,
       "locked": false,
