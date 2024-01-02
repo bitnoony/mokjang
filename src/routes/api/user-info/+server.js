@@ -1,25 +1,26 @@
 import { supabase } from "$lib/supabaseClient";
+import { json } from "@sveltejs/kit";
 
-export async function POST(requestEvent) {
+export async function POST({ request }) {
 	// formData 사용법
 	// https://kit.svelte.dev/docs/web-standards#formdata
-	const { request, redirect } = requestEvent;
-	const data = await request.formData();
+	const data = await request.json();
+	let result = false;
 
 	// id가 없으면 false
-	const birthday = data.get('birthday');
-    const job = data.get('job');
-    const job_address = data.get('job_address');
-    const home_address = data.get('home_address');
-    const training = data.get('training');
-    const baptism = data.get('baptism');
-    const enterance = data.get('enterance');
-    const family = data.get('family');
-    const partner = data.get('partner');
-    const email = data.get('email');
-    const phone = data.get('phone');
-    const memo = data.get('memo');
-    const id = data.get('id');
+	const birthday = data['birthday'];
+    const job = data['job'];
+    const job_address = data['job_address'];
+    const home_address = data['home_address'];
+    const training = data['training'];
+    const baptism = data['baptism'];
+    const enterance = data['enterance'];
+    const family = data['family'];
+    const partner = data['partner'];
+    const email = data['email'];
+    const phone = data['phone'];
+    const memo = data['memo'];
+    const id = data['id'];
 
 	// id로 DB에서 유저 정보 조회. USERS
 	// 유저가 있나? 없으면 result = false;
@@ -47,15 +48,10 @@ export async function POST(requestEvent) {
 			.upsert(insertData)
 			.select();
 
-		console.log(data, error);
-
-		if (!error) {
-			throw redirect(302, '/mokjang/list');
-		}
+		if (!error) result = true;
 	} catch (err) {
 		console.error(err, '회원 INSERT 중 에러 발생.');
 	}
 
-	// form 태그로 들어갔을때 form
-	return new Response().redirected = '';
+	return new Response(result)
 }

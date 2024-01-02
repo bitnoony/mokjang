@@ -3,7 +3,44 @@
 	import bootstrapBundle from "bootstrap/dist/js/bootstrap.bundle.js?url";
 	import "@fortawesome/fontawesome-free/css/all.min.css";
 
+	import { onMount } from 'svelte';
+	import {goto} from '$app/navigation';
+
 	export let data;
+	let userForm;
+	// $:email; // value에 넣기.
+
+	async function formSubmit(event) {
+		event.preventDefault(); // 아마도 막힘.
+
+		const formData = {
+			id: userForm.id.value,
+			birthday: userForm.birthday.value,
+			job: userForm.job.value,
+			job_address: userForm.job_address.value,
+			home_address: userForm.home_address.value,
+			training: userForm.training.value,
+			baptism: userForm.baptism.value,
+			enterance: userForm.enterance.value,
+			family: userForm.family.value,
+			partner: userForm.partner.value,
+			email: userForm.email.value,
+			phone: userForm.phone.value,
+			memo: userForm.memo.value,
+		}
+
+		const response = await fetch('/api/user-info', {
+			method: 'POST',
+			body: JSON.stringify(formData),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		if (response.ok) {
+			goto('./mokjang/list');
+		}
+	}
 </script>
 
 <style>
@@ -31,7 +68,7 @@
 	}
 </style>
 
-<form action="/api/user-info" method="POST">
+<form action="/api/user-info" method="POST" bind:this={userForm} on:submit={formSubmit}>
 	<div class="container card">
 		<div class="d-flex justify-content-center my-5">
 			<h1>목자 정보 입력</h1>
@@ -95,9 +132,9 @@
 			<label class="input-group-text width-80">메모</label>
 			<textarea name="memo" cols="30" rows="3" class="form-control"></textarea>
 		</div>
-		<div class="d-flex justify-content-center input-group my-2">
+		<div class="d-flex justify-content-center my-2">
 			<input type="hidden" name="id" value="{data.id}">
-			<button type="submit" class="btn btn-success large-button">제 출</button>
+			<button class="btn btn-success large-button" on:click={userForm.submit}>제 출</button>
 		</div>
 	<div>
 </form>
