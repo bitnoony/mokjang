@@ -8,9 +8,12 @@ export async function load() {
 	let { data: MOKJANG, error } = await supabase
 	.from('MOKJANG')
 	.select("*")
-	.eq('user_id', userId);
+	.eq('user_id', userId)
+	.order('current_use', {ascending: false})
+	.order('created_date', {ascending: false});
 
-	console.log("MOKJANG", MOKJANG);
-
-	return { mokjangList: MOKJANG };
+	return {
+		mokjangList: MOKJANG,
+		userId
+	};
 };
