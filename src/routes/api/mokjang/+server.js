@@ -23,7 +23,7 @@ export async function POST({ request }) {
 
 	// supabase 데이터 저장.
 	try {
-		await disableCurrentUse(current_use);
+		await disableCurrentUse(current_use, user_id);
 
 		await supabase.from('MOKJANG').insert(requestData);
 	} catch (err) {
@@ -61,7 +61,7 @@ export async function PUT({ request }) {
 
 	// supabase 데이터 수정.
 	try {
-		await disableCurrentUse(current_use);
+		await disableCurrentUse(current_use, user_id);
 
 		await supabase.from('MOKJANG').update({
 			mokjang_name, area, tag, current_use
@@ -121,11 +121,12 @@ export async function DELETE({ request }) {
 /**
  * current_use가 있으면 끕니다.
  */
-async function disableCurrentUse(currentUse) {
+async function disableCurrentUse(currentUse, userId) {
+	console.log(currentUse, userId);
 	if (!currentUse) return;
 	const { data } = await supabase.from('MOKJANG').update({
 		current_use: false
-	}).eq('current_use', true);
+	}).eq('user_id', userId).eq('current_use', true);
 
 	console.log("current_use 업데이트!!!!", data);
 }

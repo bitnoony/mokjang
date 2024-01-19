@@ -2,7 +2,32 @@ import { supabase } from "$lib/supabaseClient";
 import { json } from "@sveltejs/kit";
 
 // 조회
-// 본인 아이디 외 목원들
+export async function GET ({ url }) {
+	const selectedMokwonId = url.searchParams?.get('id');
+	let result = false;
+
+	// 목원 아이디 유효성 검사 체크
+	if (!selectedMokwonId) {
+		const resp = {
+			isSuccess: result,
+			error_message: "사용자 정보를 가져오는 중, 문제가 발생했습니다."
+		}
+		return json(resp);
+	}
+
+	// 클릭한 목원 정보
+	let mokwonInfo = await supabase
+		.from("USERS")
+		.select("*, USER_INFO(*)")
+		.eq("id", selectedMokwonId)
+		.maybeSingle();
+	
+	result = true;
+	return json({
+		result,
+		mokwonInfo
+	});
+}
 
 // 생성
 export async function POST ({request}) {
@@ -31,8 +56,6 @@ export async function POST ({request}) {
 		// 유저 정보 추가 (목원)
 		await insertUserInfo(data, id);
 
-		// 목원과 목장을 연결..
-
 		// 트랜젝션 종료
 	} catch (err) {
 		console.error(err, '목원 INSERT 중 에러 발생.');
@@ -42,9 +65,9 @@ export async function POST ({request}) {
 	return json({ isSuccess: result });
 }
 
-async function insertUser({name, type}) {
+async function insertUser({name, type, mokja_id}) {
 	const { data, error } = await supabase.from('USERS')
-	.insert([{ name, type },]).select();
+	.insert([{ name, type, mokja_id },]).select();
 
 	return data;
 }
