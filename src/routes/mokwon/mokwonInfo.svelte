@@ -165,7 +165,7 @@
 		<div class="input-group">
 			<span class="input-group-text">최종양육</span>
 			<select class="form-select" bind:value={mokwonInfo.training}>
-				<option selected>선택하세요...</option>
+				<option value="">없음</option>
 				<option value="새신자교육">새신자교육</option>
 				<option value="think양육">think양육</option>
 				<option value="양육교사">양육교사</option>
