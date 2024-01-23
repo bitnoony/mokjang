@@ -1,14 +1,22 @@
 <script>
 	import MokwonInfo from './mokwonInfo.svelte';
+	import {getMokwonList} from './mokwon.js';
 
 	export let data;
-	const {mokwonList, mokja_id} = data;
-	let selectedMokwonInfo;
+	let mokwonInfoComponent;
+	let {mokwonList, mokja_id} = data;
 
 	async function getMokwonInfo(mokwonId) {
-		const response = await fetch(`/api/mokwon?id=${mokwonId}`);
-		const {mokwonInfo} = await response.json();
-		selectedMokwonInfo = mokwonInfo.data;
+		mokwonInfoComponent.getMokwonInfo(mokwonId);
+	}
+
+	async function refreshMokwonList() {
+		const result = await getMokwonList(mokja_id);
+		mokwonList = result.mokwonList;
+	}
+
+	function addMokwon() {
+		mokwonInfoComponent.getMokwonInfo();
 	}
 </script>
 
@@ -65,7 +73,7 @@
 		<div class="mokwon-divider-body">
 			<header><h1>목원 리스트</h1></header>
 			<section>
-				<button class="btn btn-lg btn-success">추가</button>
+				<button class="btn btn-lg btn-success" on:click={addMokwon}>추가</button>
 				<div>
 					{#each mokwonList as mokwon}
 						<div class="mokwon-item" on:click={e => {getMokwonInfo(mokwon.id)}}>
@@ -83,8 +91,12 @@
 		<div class="mokwon-divider-body">
 			<header><h1>목원 정보</h1></header>
 			<section>
-				<MokwonInfo bind:selectedMokwonInfo={selectedMokwonInfo} mokjaId={mokja_id}/>
-			</section> <!-- 컴포넌트로 감싸기 -->
+				<MokwonInfo 
+				mokja_id={mokja_id}
+				bind:this={mokwonInfoComponent}
+				on:message={refreshMokwonList}
+				/>
+			</section>
 		</div>
 	</div>
 </div>

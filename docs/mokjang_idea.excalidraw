@@ -377,7 +377,7 @@
       "containerId": "CXrvlIuDn2OvJIlngDLs3",
       "originalText": "목장 index\n목자 아이디\n목장 이름\n지역\n현재 목장 여부\n태그",
       "lineHeight": 1.25,
-      "baseline": 145
+      "baseline": 142
     },
     {
       "type": "text",
@@ -481,7 +481,7 @@
       "containerId": "5guAEKggnULigfXNwpF-w",
       "originalText": "히스토리 index\n유저 id\n히스토리가 일어난 날짜\n목장 index\nhistory_memo",
       "lineHeight": 1.25,
-      "baseline": 168
+      "baseline": 164
     },
     {
       "type": "rectangle",
@@ -553,7 +553,7 @@
       "containerId": "49nBkDvJDMjVoo3sqSShg",
       "originalText": "메모 index\n모임 index\n작성자 아이디\n대상자 아이디\n글 내용\n작성날짜\n수정날짜\n삭제날짜\n코멘트",
       "lineHeight": 1.25,
-      "baseline": 220
+      "baseline": 217
     },
     {
       "type": "text",
@@ -705,7 +705,7 @@
       "containerId": "YjBanX5T_eozz0WCC4fV1",
       "originalText": "모임 index\n작성자 아이디\n모임날짜\n장소\n작성날짜\n수정날짜\n제목\n모임 코멘트",
       "lineHeight": 1.25,
-      "baseline": 195
+      "baseline": 192
     },
     {
       "type": "rectangle",
@@ -777,7 +777,7 @@
       "containerId": "V0ekca2gTG0FavT9NWCWz",
       "originalText": "아이디\n\n생년월일\n직업\n직장주소\n집주소\n양육이름\n세례년도\n입교년도\n가족관계\n배우자\n이메일\n전화번호\n메모",
       "lineHeight": 1.25,
-      "baseline": 345
+      "baseline": 342
     },
     {
       "type": "arrow",
@@ -939,7 +939,7 @@
       "containerId": "EiBIpPEWOqsC-gVnLCnZu",
       "originalText": "모임 index\n출석자 아이디",
       "lineHeight": 1.25,
-      "baseline": 45
+      "baseline": 42
     },
     {
       "type": "arrow",
@@ -2704,7 +2704,7 @@
       "containerId": "09Gips2R1Tn0IksL9BeXp",
       "originalText": "목장에 소속한 목원\n(목자, 부목자, 목원)\n\n목장 index\n목원 id",
       "lineHeight": 1.25,
-      "baseline": 168
+      "baseline": 164
     },
     {
       "type": "arrow",
@@ -3897,7 +3897,7 @@
       "containerId": "gfx8spX6Esol42z6Oy1iz",
       "originalText": "날짜, 장소, 참여자, 참석수. 제목",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -4929,7 +4929,7 @@
       "containerId": "mts23lWWddrxpAkJTqp7d",
       "originalText": "1",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -5009,7 +5009,7 @@
       "containerId": "qZdAwmSVnJPSjscg186Bh",
       "originalText": "2",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "arrow",
@@ -5377,7 +5377,7 @@
       "containerId": "yyzRpcU9SFFI2j7bYcNy7",
       "originalText": "+",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -6138,7 +6138,7 @@
       "containerId": "ZiGriVK9CROzEISqHcoWp",
       "originalText": "+",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -6819,7 +6819,7 @@
       "containerId": "wH2feHV-JtLTQQLAM9K2n",
       "originalText": "날짜, 장소, 모임 코멘트",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -6914,7 +6914,7 @@
       "containerId": "bDZcC3wIXZ4gn62ShJmF2",
       "originalText": "모임 이름",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -6982,7 +6982,7 @@
       "containerId": "ccyZKbLsOzRta_2cYcLoC",
       "originalText": "사람, 메모, 코멘트 (헤더)",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "ellipse",
@@ -7050,7 +7050,7 @@
       "containerId": "lg_DyZX_5kRCsp47bY1mt",
       "originalText": "+",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -7118,7 +7118,7 @@
       "containerId": "zu91B_v195MCCoNYggLLz",
       "originalText": "목원 상세내용",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -7186,7 +7186,7 @@
       "containerId": "Jv85xC6ybvtqWqEA3YMWa",
       "originalText": "목원 리스트",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -7254,7 +7254,7 @@
       "containerId": "4FDc8kaUcx8gVDRuqnO9x",
       "originalText": "\n\n\n\n\n참여자",
       "lineHeight": 1.25,
-      "baseline": 262
+      "baseline": 256
     },
     {
       "type": "rectangle",
@@ -7713,7 +7713,7 @@
       "containerId": "A7LLCBEKJh5grTnzYMtf_",
       "originalText": "사람 |          메모          |        코멘트      ",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -7781,7 +7781,7 @@
       "containerId": "dg13R2xEhTNx3cvHNZrc7",
       "originalText": "사람 |          메모          |        코멘트      ",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -7849,7 +7849,7 @@
       "containerId": "EQSX5bHSYr0MOcoRysYHL",
       "originalText": "사람 |          메모          |        코멘트      ",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "arrow",
@@ -8846,7 +8846,7 @@
       "containerId": "_sN0U5oBsc0MUdwQ_69cb",
       "originalText": "+",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -8954,7 +8954,7 @@
       "containerId": "kjon4C15kFiqOYhAuekNI",
       "originalText": "목장이름",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -9024,7 +9024,7 @@
       "containerId": "t5LqW3uLd35zM2FDehLI_",
       "originalText": "지역",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "arrow",
@@ -9339,7 +9339,7 @@
       "containerId": "LB2mtyP4TMQfIQda5laI-",
       "originalText": "확인",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -9409,7 +9409,7 @@
       "containerId": "aJA2iyTEPHNU7kObZBooA",
       "originalText": "X",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "line",
@@ -10680,7 +10680,7 @@
       "containerId": "uxb_HmD3Isb7PPVg7KRwJ",
       "originalText": "+",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -10750,7 +10750,7 @@
       "containerId": "mE3dfJfnrKxJCBxQu_Zxu",
       "originalText": "이름, 타입, 생년월일, 전화번호",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -11030,7 +11030,7 @@
       "containerId": "qhnYxzniQDHpmipVquBTs",
       "originalText": "사진",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -11100,7 +11100,7 @@
       "containerId": "pN89CGbHjPVs3wZoOmFP5",
       "originalText": "이름",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -11170,7 +11170,7 @@
       "containerId": "Zd9Np2ZiHM8wFP28mlAIN",
       "originalText": "생년월일, 전화번호",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -11240,7 +11240,7 @@
       "containerId": "vLs0nTmJrKfPPk8kfomEm",
       "originalText": "직업",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -11310,7 +11310,7 @@
       "containerId": "x63hxo9uRIlB1UMBE6v-k",
       "originalText": "이메일, 배우자",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -11380,7 +11380,7 @@
       "containerId": "TMA8FCIMEUSiSwJKAF2hA",
       "originalText": "집주소, 가족관계 (1줄씩)",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -11450,7 +11450,7 @@
       "containerId": "8LWkUjfUBmivRUZvwKnRW",
       "originalText": "양육이름, 세례년도, 입교년도",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -11520,7 +11520,7 @@
       "containerId": "cSjdCLHnm9wo84NB012km",
       "originalText": "히스토리",
       "lineHeight": 1.25,
-      "baseline": 28
+      "baseline": 24
     },
     {
       "type": "rectangle",
@@ -12288,7 +12288,7 @@
       "containerId": "GdtBCsvqKdCgCMa3v6VzZ",
       "originalText": "이름",
       "lineHeight": 1.25,
-      "baseline": 34
+      "baseline": 28
     },
     {
       "type": "rectangle",
@@ -12358,7 +12358,7 @@
       "containerId": "4KKbVIKQh9Wieu-9jjQN9",
       "originalText": "생년월일",
       "lineHeight": 1.25,
-      "baseline": 34
+      "baseline": 28
     },
     {
       "type": "rectangle",
@@ -12428,7 +12428,7 @@
       "containerId": "6EhSYbNLYLpL3L7Dt9iWL",
       "originalText": "이메일",
       "lineHeight": 1.25,
-      "baseline": 34
+      "baseline": 28
     },
     {
       "type": "rectangle",
@@ -12498,7 +12498,7 @@
       "containerId": "LRMSFIEXf3YxYLZcRrShr",
       "originalText": "전화번호",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -12688,7 +12688,7 @@
       "containerId": "sufXtxl13eqkjxA4PN10A",
       "originalText": "메모, 코멘트",
       "lineHeight": 1.25,
-      "baseline": 63
+      "baseline": 59
     },
     {
       "type": "rectangle",
@@ -12756,7 +12756,7 @@
       "containerId": "h5zuivjTf3mkGdwXcObEU",
       "originalText": "사람, 메모, 코멘트 (헤더)",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -12824,7 +12824,7 @@
       "containerId": "ULgU1Mej-LXXomqj2V385",
       "originalText": "사람 |          메모          |        코멘트      ",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -12892,7 +12892,7 @@
       "containerId": "c5AEvDwUmkIRWI3wj_QGg",
       "originalText": "사람 |          메모          |        코멘트      ",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -12960,7 +12960,7 @@
       "containerId": "XMdJrp9_X2MHP4D8IusMR",
       "originalText": "사람 |          메모          |        코멘트      ",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -13064,7 +13064,7 @@
       "containerId": "X7vFbYTUJqnKoleGE09c2",
       "originalText": "X",
       "lineHeight": 1.25,
-      "baseline": 28
+      "baseline": 24
     },
     {
       "type": "rectangle",
@@ -13150,7 +13150,7 @@
       "containerId": "LzMnuTn_MjLwIW21PoOHK",
       "originalText": "Google",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -13236,7 +13236,7 @@
       "containerId": "YL_BfDQEc_i-zhVHdqiha",
       "originalText": "supabase",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -13322,7 +13322,7 @@
       "containerId": "yq3Qt-qcDeQHXYfc5mhUL",
       "originalText": "sveltekit",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "arrow",
@@ -13968,7 +13968,7 @@
       "containerId": "1Er96jtESGZtjUf3CyrMM",
       "originalText": "로그인\n클라코드",
       "lineHeight": 1.25,
-      "baseline": 82
+      "baseline": 76
     },
     {
       "type": "rectangle",
@@ -14054,7 +14054,7 @@
       "containerId": "fSmgSt_wC7gBneDyPc4lQ",
       "originalText": "로그인\n클라코드",
       "lineHeight": 1.25,
-      "baseline": 82
+      "baseline": 76
     },
     {
       "type": "arrow",
@@ -14184,7 +14184,7 @@
       "containerId": "b6XmdiwJwAKue0QKbj0AT",
       "originalText": "supa\nbase",
       "lineHeight": 1.25,
-      "baseline": 82
+      "baseline": 76
     },
     {
       "type": "arrow",
@@ -14314,7 +14314,7 @@
       "containerId": "BoSjqYI9lCCUtwsOGJDM1",
       "originalText": "supa\nbase",
       "lineHeight": 1.25,
-      "baseline": 82
+      "baseline": 76
     },
     {
       "type": "arrow",
@@ -14407,7 +14407,7 @@
       "containerId": "qjhOI3DAZIEANY0nON6Lj",
       "originalText": "2",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "text",
@@ -14536,7 +14536,7 @@
       "containerId": "m2yEpDjqH2viop7T0vBV_",
       "originalText": "2",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "arrow",
@@ -14629,7 +14629,7 @@
       "containerId": "1NpBfh0mppnzfmbz_wc3n",
       "originalText": "3",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "arrow",
@@ -14722,7 +14722,7 @@
       "containerId": "GDGWbqVNQ8o0kE66mtnXH",
       "originalText": "3",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -14800,7 +14800,7 @@
       "containerId": "0KACVlU7ApUPMxoWx42Z1",
       "originalText": "서버 코드\n받은 데이터를\n이용해서 세션을 만들어보자.",
       "lineHeight": 1.25,
-      "baseline": 172
+      "baseline": 166
     },
     {
       "type": "text",
@@ -14910,7 +14910,7 @@
       "containerId": "VQlUulsLzM5VzVFvGXLJR",
       "originalText": "서버에서 세션을\nhook에서 꺼내쓰면서\n로그인 정보를\n확인하자.",
       "lineHeight": 1.25,
-      "baseline": 172
+      "baseline": 166
     },
     {
       "type": "arrow",
@@ -15003,7 +15003,7 @@
       "containerId": "qqq5ySABTGxQIMJEXER8S",
       "originalText": "4",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "text",
@@ -15157,7 +15157,7 @@
       "containerId": "BMQG7Rjw-ZjbVGo6uwlWV",
       "originalText": "예시, 목장정보\nuser id",
       "lineHeight": 1.25,
-      "baseline": 127
+      "baseline": 121
     },
     {
       "type": "arrow",
@@ -15250,7 +15250,7 @@
       "containerId": "hlZiQWFjEq2dfk3wuigki",
       "originalText": "4",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -15324,7 +15324,7 @@
       "containerId": "urwLE-brrEFjLmEfJW-qd",
       "originalText": "서버 user\n그 유저의 목장정보를\nsupabase에\n요청",
       "lineHeight": 1.25,
-      "baseline": 172
+      "baseline": 166
     },
     {
       "type": "text",
@@ -15563,7 +15563,7 @@
       "containerId": "hBz9mOthKEBQWfjGdoPrz",
       "originalText": "login",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "arrow",
@@ -15656,7 +15656,7 @@
       "containerId": "2REosCaaXra1EKdawYLb7",
       "originalText": "2",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -15734,7 +15734,7 @@
       "containerId": "RxVtwPbujr27KQMNy0kAx",
       "originalText": "current\nmokjang",
       "lineHeight": 1.25,
-      "baseline": 82
+      "baseline": 76
     },
     {
       "type": "rectangle",
@@ -15812,7 +15812,7 @@
       "containerId": "y7NzWUhdWzUdXALMdgpNt",
       "originalText": "mokjang\nlist",
       "lineHeight": 1.25,
-      "baseline": 82
+      "baseline": 76
     },
     {
       "type": "text",
@@ -15941,7 +15941,7 @@
       "containerId": "7t4pN6RUdoP9PQsEvP1d3",
       "originalText": "O",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "text",
@@ -17176,7 +17176,7 @@
       "containerId": "DasUEm4-1Ix9J6gw0K5ag",
       "originalText": "server.js\nGET",
       "lineHeight": 1.25,
-      "baseline": 82
+      "baseline": 76
     },
     {
       "type": "rectangle",
@@ -17244,7 +17244,7 @@
       "containerId": "p6thvzs87o0AZ-Rzhhs-8",
       "originalText": "REQUEST",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "rectangle",
@@ -17312,7 +17312,7 @@
       "containerId": "VAjySjT4kJgobItgimAWa",
       "originalText": "RESPONSE",
       "lineHeight": 1.25,
-      "baseline": 37
+      "baseline": 31
     },
     {
       "type": "arrow",
@@ -19784,7 +19784,7 @@
       "containerId": "BTsi3wwkon015YV3AAlh5",
       "originalText": "삭제",
       "lineHeight": 1.25,
-      "baseline": 20
+      "baseline": 17
     },
     {
       "type": "arrow",
@@ -19906,7 +19906,7 @@
       "containerId": "5slDClklWvFTVqyL1xo2R",
       "originalText": "목장: ~~~~~~~~\n정말로 삭제하시겠습니까?",
       "lineHeight": 1.25,
-      "baseline": 63
+      "baseline": 59
     },
     {
       "type": "rectangle",
@@ -19974,7 +19974,7 @@
       "containerId": "iKRKhlXL9m5C8jzzZaiGf",
       "originalText": "예",
       "lineHeight": 1.25,
-      "baseline": 20
+      "baseline": 17
     },
     {
       "type": "rectangle",
@@ -20042,7 +20042,7 @@
       "containerId": "qg6BjNTjK10p1hUc2On6I",
       "originalText": "아니오",
       "lineHeight": 1.25,
-      "baseline": 20
+      "baseline": 17
     },
     {
       "type": "arrow",
@@ -20455,184 +20455,184 @@
       "baseline": 67
     },
     {
-      "id": "vJVqusp_NmAlZenOhaAxQ",
       "type": "text",
+      "version": 180,
+      "versionNonce": 1220353024,
+      "isDeleted": false,
+      "id": "vJVqusp_NmAlZenOhaAxQ",
+      "fillStyle": "solid",
+      "strokeWidth": 4,
+      "strokeStyle": "solid",
+      "roughness": 2,
+      "opacity": 100,
+      "angle": 0,
       "x": 3008.234643233367,
       "y": 4840.508338742637,
-      "width": 405.25201416015625,
-      "height": 90,
-      "angle": 0,
       "strokeColor": "#1971c2",
       "backgroundColor": "transparent",
+      "width": 405.25201416015625,
+      "height": 135,
+      "seed": 1974638330,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "boundElements": [],
+      "updated": 1706011848404,
+      "link": null,
+      "locked": false,
+      "fontSize": 36,
+      "fontFamily": 1,
+      "text": "추가 할 시, 리스트 갱신\n+@ 목원 개별 조회\n수정 기능, 리스트 갱신",
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "추가 할 시, 리스트 갱신\n+@ 목원 개별 조회\n수정 기능, 리스트 갱신",
+      "lineHeight": 1.25,
+      "baseline": 121
+    },
+    {
+      "type": "text",
+      "version": 270,
+      "versionNonce": 690299904,
+      "isDeleted": false,
+      "id": "RvgOqRu2bODL9cKJ24d2W",
       "fillStyle": "solid",
       "strokeWidth": 4,
       "strokeStyle": "solid",
       "roughness": 2,
       "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 1974638330,
-      "version": 125,
-      "versionNonce": 1592239974,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1705674748398,
-      "link": null,
-      "locked": false,
-      "text": "추가 할 시, 리스트 갱신\n수정 기능, 리스트 갱신",
-      "fontSize": 36,
-      "fontFamily": 1,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "baseline": 76,
-      "containerId": null,
-      "originalText": "추가 할 시, 리스트 갱신\n수정 기능, 리스트 갱신",
-      "lineHeight": 1.25
-    },
-    {
-      "id": "RvgOqRu2bODL9cKJ24d2W",
-      "type": "text",
-      "x": 3008.6890499716483,
-      "y": 5019.14450817623,
+      "angle": 0,
+      "x": 2998.2126751155174,
+      "y": 5138.576335074009,
+      "strokeColor": "#1971c2",
+      "backgroundColor": "transparent",
       "width": 333.25201416015625,
       "height": 90,
-      "angle": 0,
-      "strokeColor": "#1971c2",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 4,
-      "strokeStyle": "solid",
-      "roughness": 2,
-      "opacity": 100,
+      "seed": 804793338,
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 804793338,
-      "version": 218,
-      "versionNonce": 266428346,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1705674758363,
+      "boundElements": [],
+      "updated": 1706011836710,
       "link": null,
       "locked": false,
-      "text": "삭제 기능\n삭제시, 리스트 갱신",
       "fontSize": 36,
       "fontFamily": 1,
+      "text": "삭제 기능\n삭제시, 리스트 갱신",
       "textAlign": "left",
       "verticalAlign": "top",
-      "baseline": 76,
       "containerId": null,
       "originalText": "삭제 기능\n삭제시, 리스트 갱신",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 76
     },
     {
-      "id": "pYmvFUozCC-dJnE6Q2QSM",
       "type": "text",
-      "x": 2854.4324494554653,
-      "y": 4860.363150638098,
-      "width": 108,
-      "height": 45,
-      "angle": 0,
-      "strokeColor": "#1971c2",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 4,
-      "strokeStyle": "solid",
-      "roughness": 2,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "roundness": null,
-      "seed": 857539066,
       "version": 52,
       "versionNonce": 1007821434,
       "isDeleted": false,
-      "boundElements": null,
+      "id": "pYmvFUozCC-dJnE6Q2QSM",
+      "fillStyle": "solid",
+      "strokeWidth": 4,
+      "strokeStyle": "solid",
+      "roughness": 2,
+      "opacity": 100,
+      "angle": 0,
+      "x": 2854.4324494554653,
+      "y": 4860.363150638098,
+      "strokeColor": "#1971c2",
+      "backgroundColor": "transparent",
+      "width": 108,
+      "height": 45,
+      "seed": 857539066,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "boundElements": [],
       "updated": 1705674825624,
       "link": null,
       "locked": false,
-      "text": "화요일",
       "fontSize": 36,
       "fontFamily": 1,
+      "text": "화요일",
       "textAlign": "left",
       "verticalAlign": "top",
-      "baseline": 31,
       "containerId": null,
       "originalText": "화요일",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 31
     },
     {
-      "id": "M-otmtNv4969yiCVS5f5-",
       "type": "text",
-      "x": 2855.341524511269,
-      "y": 5035.298191793231,
+      "version": 229,
+      "versionNonce": 507749376,
+      "isDeleted": false,
+      "id": "M-otmtNv4969yiCVS5f5-",
+      "fillStyle": "solid",
+      "strokeWidth": 4,
+      "strokeStyle": "solid",
+      "roughness": 2,
+      "opacity": 100,
+      "angle": 0,
+      "x": 2846.9603683562236,
+      "y": 5161.015815469618,
+      "strokeColor": "#1971c2",
+      "backgroundColor": "transparent",
       "width": 108,
       "height": 45,
-      "angle": 0,
-      "strokeColor": "#1971c2",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 4,
-      "strokeStyle": "solid",
-      "roughness": 2,
-      "opacity": 100,
+      "seed": 2107680102,
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 2107680102,
-      "version": 182,
-      "versionNonce": 672039142,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1705674831491,
+      "boundElements": [],
+      "updated": 1706011835397,
       "link": null,
       "locked": false,
-      "text": "금요일",
       "fontSize": 36,
       "fontFamily": 1,
+      "text": "금요일",
       "textAlign": "left",
       "verticalAlign": "top",
-      "baseline": 31,
       "containerId": null,
       "originalText": "금요일",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 31
     },
     {
-      "id": "fFm60ZH4AnCznS4qHAWI9",
       "type": "text",
-      "x": 2851.0558102255554,
-      "y": 4949.194283799369,
-      "width": 124.77598571777344,
-      "height": 45,
-      "angle": 0,
-      "strokeColor": "#1971c2",
-      "backgroundColor": "transparent",
+      "version": 355,
+      "versionNonce": 745120768,
+      "isDeleted": false,
+      "id": "fFm60ZH4AnCznS4qHAWI9",
       "fillStyle": "solid",
       "strokeWidth": 4,
       "strokeStyle": "solid",
       "roughness": 2,
       "opacity": 100,
+      "angle": 0,
+      "x": 2845.7618765754705,
+      "y": 5022.908583640175,
+      "strokeColor": "#1971c2",
+      "backgroundColor": "transparent",
+      "width": 124.77598571777344,
+      "height": 45,
+      "seed": 1396384422,
       "groupIds": [],
       "frameId": null,
       "roundness": null,
-      "seed": 1396384422,
-      "version": 309,
-      "versionNonce": 896380538,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1705674852988,
+      "boundElements": [],
+      "updated": 1706011837820,
       "link": null,
       "locked": false,
-      "text": "수요일?",
       "fontSize": 36,
       "fontFamily": 1,
+      "text": "수요일?",
       "textAlign": "left",
       "verticalAlign": "top",
-      "baseline": 31,
       "containerId": null,
       "originalText": "수요일?",
-      "lineHeight": 1.25
+      "lineHeight": 1.25,
+      "baseline": 31
     }
   ],
   "appState": {

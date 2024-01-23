@@ -96,5 +96,82 @@ async function insertUserInfo(inputData, id) {
 }
 
 // 수정
+export async function PUT ({request}) {
+	const data = await request.json();
+	let result = false;
+
+	// data 안에 id, name, type 이 있는가? validation
+	if (!data.id || !data.name || !data.type) {
+		const resp = {
+			isSuccess: result,
+			error_message: "정보가 누락 되었습니다."
+		}
+		return json(resp);
+	}
+
+	try {		
+		const usersResult = await supabase.from('USERS')
+			.update({name: data.name, type: data.type})
+			.eq("id", data.id);
+
+		console.log("usersResult", usersResult);
+
+		if (usersResult.error) {
+			throw "users update failed";
+		}
+
+		const userInfoResult = await supabase.from('USER_INFO')
+			.update({
+				birthday: data.birthday,
+				phone: data.phone,
+				job: data.job,
+				email: data.email,
+				partner: data.partner,
+				home_address: data.home_address,
+				job_address: data.job_address,
+				family: data.family,
+				training: data.training,
+				baptism: data.baptism,
+				enterance: data.enterance,
+			})
+			.eq("id", data.id);
+
+		console.log("userInfoResult", userInfoResult);
+		if (userInfoResult.error) {
+			throw "users update failed";
+		}
+		
+	} catch (err) {
+		console.error(err, '목원 UPDATE 중 에러 발생.');
+		return json({ isSuccess: false });
+	}
+
+	result = true;
+	return json({ isSuccess: result });
+}
 
 // 삭제
+export async function DELETE ({url}) {
+	const targetMokwonId = url.searchParams?.get('id');
+	let result = false;
+
+	// data 안에 name과 type이 있는가? validation
+	if (!targetMokwonId) {
+		const resp = {
+			isSuccess: result,
+			error_message: "정보가 누락 되었습니다."
+		}
+		return json(resp);
+	}
+
+	try {
+		const { data, error } = await supabase.from('USERS')
+			.update({deleted_date: new Date().toISOString()})
+			.eq("id", targetMokwonId);
+	} catch (err) {
+		console.error(err, '목원 DELETE 중 에러 발생.');
+	}
+	
+	result = true;
+	return json({ isSuccess: result });
+}

@@ -1,12 +1,15 @@
 <script>
-	export let selectedMokwonInfo;
-	export let mokjaId;
-	let mokwonInfo;
-	$: mokwonInfo = getSelectedMokwonInfo(selectedMokwonInfo);
+	import {createEventDispatcher} from 'svelte';
+	const dispatch = createEventDispatcher();
 
-	function getSelectedMokwonInfo(mokwonInfo) {
+	export let mokja_id;
+	let mokwonInfo;
+	$: mokwonInfo = setMokwonInfo();
+
+	function setMokwonInfo(mokwonInfo = null) {
 		const info = mokwonInfo?.USER_INFO ?? "";
 		return {
+			id: mokwonInfo?.id ?? "",
 			name: mokwonInfo?.name ?? "",
 			type: mokwonInfo?.type ?? "목원",
 			birthday: info?.birthday ?? "",
@@ -23,12 +26,25 @@
 		}
 	}
 
+	export async function getMokwonInfo(mokwonId) {
+		if (mokwonId) {
+			const response = await fetch(`/api/mokwon?id=${mokwonId}`);
+			const responseData = await response.json();
+			mokwonInfo = setMokwonInfo({id:mokwonId, ...responseData.mokwonInfo.data});
+		} else {
+			mokwonInfo = setMokwonInfo();
+		}
+	}
+
 	async function saveMokwon() {
 		// validate
+		if (!mokwonInfo.name) {
+			alert("이름은 필수입니다.");
+			return;
+		}
 
-		// saveMokwon 고장.
 		const data = {
-			mokja_id: mokjaId,
+			mokja_id: mokja_id,
 			name: mokwonInfo.name, 
 			type: mokwonInfo.type, 
 			birthday: mokwonInfo.birthday, 
@@ -51,6 +67,74 @@
 				'Content-Type': 'application/json'
 			}
 		});
+
+		const {isSuccess} = await response.json();
+
+		if (isSuccess) {
+			dispatch("message");
+			mokwonInfo = setMokwonInfo();
+			alert("목원이 추가 되었습니다.");
+		}
+	}
+
+	async function modifyMokwon() {
+		// validate
+		if (!mokwonInfo.name) {
+			alert("이름은 필수입니다.");
+			return;
+		}
+
+		const data = {
+			id: mokwonInfo.id,
+			mokja_id: mokja_id,
+			name: mokwonInfo.name, 
+			type: mokwonInfo.type, 
+			birthday: mokwonInfo.birthday, 
+			phone: mokwonInfo.phone, 
+			job: mokwonInfo.job, 
+			email: mokwonInfo.email, 
+			partner: mokwonInfo.partner, 
+			home_address: mokwonInfo.home_address, 
+			job_address: mokwonInfo.job_address, 
+			family: mokwonInfo.family, 
+			training: mokwonInfo.training, 
+			baptism: mokwonInfo.baptism, 
+			enterance: mokwonInfo.enterance
+		}
+
+		const response = await fetch('/api/mokwon', {
+			method: "PUT",
+			body: JSON.stringify(data),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+
+		const {isSuccess} = await response.json();
+
+		if (isSuccess) {
+			dispatch("message");
+			mokwonInfo = setMokwonInfo();
+			alert("수정 되었습니다.");
+		}
+	}
+
+	async function deleteMokwon() {
+		const id = mokwonInfo.id;
+
+		if (!confirm(`정말로 ${mokwonInfo.name}을(를) 삭제하시겠습니까?`)) return;
+
+		const response = await fetch(`/api/mokwon?id=${id}`, {
+			method: "DELETE",
+		});
+
+		const {isSuccess} = await response.json();
+
+		if (isSuccess) {
+			dispatch("message");
+			mokwonInfo = setMokwonInfo();
+			alert("삭제 되었습니다.");
+		}
 	}
 </script>
 
@@ -190,8 +274,11 @@
 		<div class="my-3">히스토리</div>
 	</div>
 	<div>
+		{#if mokwonInfo.id === ""}
 		<button class="btn btn-lg btn-success" on:click={saveMokwon}>저장</button>
-		<button class="btn btn-lg btn-danger">삭제</button>
-		<button class="btn btn-lg btn-secondary">취소</button>
+		{:else}
+		<button class="btn btn-lg btn-primary" on:click={modifyMokwon}>수정</button>
+		{/if}
+		<button class="btn btn-lg btn-danger" on:click={deleteMokwon} disabled={mokwonInfo.id === ""}>삭제</button>
 	</div>
 </div>
