@@ -12,7 +12,7 @@
 <nav>
 	<div>
 		<a href="#" class="btn btn-primary">
-			<i class="fa-solid fa-bars"></i>
+			<i class="fa-solid fa-grip"></i>
 		</a>
 	</div>
 	<div>
