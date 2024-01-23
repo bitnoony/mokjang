@@ -11,7 +11,7 @@
 					access_type: 'offline',
 					prompt: 'consent',
 				},
-				redirectTo: "http://localhost:5173/login",
+				redirectTo: "/login",
 			},
 		})
 	}
