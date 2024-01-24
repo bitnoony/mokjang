@@ -11,18 +11,19 @@
 </svelte:head>
 <nav>
 	<div>
-		<a href="#" class="btn btn-primary">
-			<i class="fa-solid fa-grip"></i>
+		<a href="/mokjang/list" class="btn btn-primary">
+			<i class="fa-solid fa-layer-group"></i>
+			목장 리스트
 		</a>
 	</div>
 	<div>
 		<h4>mokjang</h4>
 	</div>
 	<div>
-		<a href="#" class="btn btn-primary rounded-circle">
+		<a href="/mokwon" class="btn btn-primary rounded-circle">
 			<i class="fa-solid fa-users"></i>
 		</a>
-		<a href="#" class="btn btn-primary rounded-circle">
+		<a href="/user-form" class="btn btn-primary rounded-circle">
 			<i class="fa-solid fa-user"></i>
 		</a>
 	</div>

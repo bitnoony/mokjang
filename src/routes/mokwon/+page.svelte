@@ -1,5 +1,5 @@
 <script>
-	import MokwonInfo from './mokwonInfo.svelte';
+	import MokwonInfo from './MokwonInfo.svelte';
 	import {getMokwonList} from './mokwon.js';
 
 	export let data;

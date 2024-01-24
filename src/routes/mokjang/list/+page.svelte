@@ -8,6 +8,10 @@
 	let mokjangModalType
 	let modalIdx, modalMokjangName, modalArea, modalTag, modalCurrentUse;
 
+	function gotoMokjang(mokjangIdx) {
+		goto(`./${mokjangIdx}`);
+	}
+
 	/**
 	 * 목장 추가 모달 오픈
 	 */
@@ -193,7 +197,7 @@
 		{#if i % 4 === 0}
 		<div class="row">
 			{#each [...mokjangList].splice(i, 4) as mokjang, index (index)}
-				<div data-idx="{mokjang.idx}" class="p-2 col-lg-3 col-md-6 col-sm-12">
+				<div data-idx="{mokjang.idx}" class="p-2 col-lg-3 col-md-6 col-sm-12" on:click={() => gotoMokjang(mokjang.idx)}>
 					<div class="card">
 						<div class="card-body">
 							<div class="d-flex justify-content-between align-items-center">
