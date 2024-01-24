@@ -1,5 +1,6 @@
 <script>
     export let mokjang;
+    export let mokjaId;
 </script>
 
 <style>

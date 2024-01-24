@@ -30,7 +30,7 @@
 
 <section class="container mokjang-container">
 	<article class="meeting-article">
-		<MeetingList {mokjang} {mokjaId} />
+		<MeetingList mokjang={mokjang} mokjaId={mokjaId} />
 	</article>
 	<article class="mokwon-article">
 		<MokwonList mokjang={mokjang} mokjaId={mokjaId} />
