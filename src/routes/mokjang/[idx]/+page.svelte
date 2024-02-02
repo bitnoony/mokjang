@@ -28,7 +28,7 @@
 	}
 </style>
 
-<section class="container mokjang-container">
+<section class="mokjang-container">
 	<article class="meeting-article">
 		<MeetingList mokjang={mokjang} mokjaId={mokjaId} />
 	</article>
