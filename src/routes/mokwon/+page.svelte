@@ -73,7 +73,7 @@
 		<div class="mokwon-divider-body">
 			<header><h1>목원 리스트</h1></header>
 			<section>
-				<button class="btn btn-lg btn-success" on:click={addMokwon}>추가</button>
+				<button class="btn btn-sm btn-success" on:click={addMokwon}>추가</button>
 				<div>
 					{#each mokwonList as mokwon}
 						<div class="mokwon-item" on:click={e => {getMokwonInfo(mokwon.id)}}>

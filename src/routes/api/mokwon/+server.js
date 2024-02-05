@@ -111,7 +111,11 @@ export async function PUT ({request}) {
 
 	try {		
 		const usersResult = await supabase.from('USERS')
-			.update({name: data.name, type: data.type})
+			.update({
+				name: data.name, 
+				type: data.type,
+				modified_date: new Date().toISOString()
+			})
 			.eq("id", data.id);
 
 		console.log("usersResult", usersResult);

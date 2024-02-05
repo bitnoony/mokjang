@@ -56,8 +56,8 @@
     </button>
     <div class="list-wrap">
         <div class="list-group">
-            {#each meetingList as {meeting_title: title, place, meeting_date: date}}
-                <MeetingItem {title} {date} {place} />
+            {#each meetingList as {idx, meeting_title: title, place, meeting_date: date}}
+                <MeetingItem {idx} {title} {date} {place}  />
             {/each}
         </div>
     </div>

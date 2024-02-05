@@ -207,7 +207,7 @@
 									{/if}
 									{mokjang.mokjang_name}
 								</h5>
-								<button data-idx="{mokjang.idx}" class="btn-gear no-decorations-btn" on:click={e => modifyMokjang(e, mokjang)}>
+								<button data-idx="{mokjang.idx}" class="btn-gear no-decorations-btn" on:click|stopPropagation={e => modifyMokjang(e, mokjang)}>
 									<i class="fa-solid fa-gear"></i>
 								</button>
 							</div>

@@ -1,0 +1,99 @@
+section {
+    height: calc(100vh - 60px);
+    display: flex;
+    padding: 2rem;
+    justify-content: space-between;
+}
+
+.meeting-container {
+    height: 100%;
+    width: 50%;
+    padding: 0 1rem;
+}
+
+.meeting-info-wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 40%;
+    padding-bottom: 1rem;
+}
+
+.meeting-info-group {
+    width: 60%;
+    height: 100%;
+    padding-right: 1rem;
+}
+
+.meeting-name {
+    width: 100%;
+}
+
+.meeting-info {
+    width: 100%;
+    height: calc(100% - 46px);
+    margin-top: 0.5rem;
+}
+
+.meeting-list-group {
+    width: 40%;
+    height: 100%;
+}
+
+.meeting-count {
+    height: 38px;
+    padding: 6px 0;
+}
+
+.meeting-list {
+    height: calc(100% - 46px);
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    overflow-y: auto;
+}
+
+.memo-info-wrap {
+    width: 100%;
+    height: 60%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+.mokwon-container {
+    height: 100%;
+    width: 50%;
+    padding: 0 1rem;
+}
+
+.mokwon-list {
+    width: 100%;
+    height: 30%;
+}
+
+.mokwon-info {
+    width: 100%;
+    height: calc(70% - 1rem);
+    margin-top: 1rem;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 0.5rem;
+    overflow-y: auto;
+}
+
+.meeting-comment {
+    height: calc(100% - 92px);
+}
+
+.common-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+
+.common-scroll::-webkit-scrollbar-thumb {
+    height: 30%;
+    background: lightgray;
+    border-radius: 10px;
+}
+
+.common-scroll::-webkit-scrollbar-track {
+    background: #f1f7ff1a;
+}
