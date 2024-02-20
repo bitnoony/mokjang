@@ -1,18 +1,63 @@
 <script>
+    import { supabase } from "$lib/supabaseClient";
     import userImg from '$lib/assets/user.svg';
     import MokwonInfo from '../../mokwon/mokwonInfo.svelte';
+    import Participant from './Participant.svelte';
     import {getMokwonList} from '../../mokwon/mokwon.js';
     export let data;
     let {meeting, userId} = data;
     let mokwonInfoComponent;
     let mokwonList = [];
-    console.log(meeting);
+    let participantList = [];
+    $:participantList;
+    // console.log(meeting);
 
     init();
 
     async function init() {
         const data = await getMokwonList(userId);
         mokwonList = data.mokwonList;
+        getParticipantList();
+    }
+
+    async function getParticipantList() {
+        const meetingIdx = meeting.idx;
+        let {data} = await supabase
+            .from('MEETING_GROUP')
+            .select("*, USERS (name), MEMO (content)")
+	        .eq('meeting_idx', meetingIdx);
+
+        participantList = data.map(p => {
+            return {
+                groupIdx: p.group_idx,
+                name: p.USERS.name,
+                memo: p.MEMO[0]?.content ?? ""
+            }
+        });
+    }
+
+    async function makeAttendance(mokwonId) {
+        let result;
+        const meetingIdx = meeting.idx;
+        try {
+            result = await fetch('/api/meeting/participant', {
+                method: "POST",
+                body: JSON.stringify({
+                    meeting_idx: meetingIdx,
+                    id: mokwonId
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            if (!result.ok) throw "실패";
+        } catch (e) {
+            alert("출석 중 문제가 발생했습니다.");
+            console.error(e);
+        }
+
+        // 리프레시
+        getParticipantList();
     }
     
 </script>
@@ -43,71 +88,12 @@
             </div>
             <div class="meeting-list-group">
                 <div class="meeting-count ps-2">
-                    목원 수: <span class="badge bg-primary rounded-pill">14</span>
+                    목원 수: {participantList.length}
                 </div>
                 <div class="meeting-list common-scroll">
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            A list item
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            A second list item
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            A third list item
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            A third list item
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            A third list item
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            A third list item
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            A third list item
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            A third list item
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            A third list item
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            A third list item
-                            <button class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </li>
-                    </ul>
+                    {#each participantList as {groupIdx, name, memo}}
+                        <Participant {groupIdx}, {name} {memo} on:message={getParticipantList} />
+                    {/each}
                 </div>
             </div>
         </div>
@@ -130,7 +116,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-end w-25">
-                        <button class="btn btn-sm btn-primary" on:click|stopPropagation={() => {alert(mokwon.name)}}>
+                        <button class="btn btn-sm btn-primary" on:click|stopPropagation={() => {makeAttendance(mokwon.id)}}>
                             <i class="fa fa-plus"></i>출석
                         </button>
                     </div>
@@ -139,7 +125,7 @@
             </div>
         </div>
         <div class="mokwon-info common-scroll">
-            <MokwonInfo mokja_id={userId} bind:this={mokwonInfoComponent} />
+            <MokwonInfo mokja_id={userId} bind:this={mokwonInfoComponent} on:message={init} />
         </div>
     </div>
 </section>
