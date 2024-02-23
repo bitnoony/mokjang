@@ -4,7 +4,7 @@ import { json } from "@sveltejs/kit";
 // insert는 post!!
 export async function POST({ request }) {
     const requestData = await request.json();
-	const {meeting_idx, id} = requestData;
+	const {meeting_idx, id, writer_id} = requestData;
 	let result = false;
     
 	if (!meeting_idx || !id) {
@@ -15,7 +15,6 @@ export async function POST({ request }) {
 		return json(resp);
     }
 
-    let resp = null;
 	try {
 		const {data} = await supabase.from("MEETING_GROUP")
 			.select("group_idx")
@@ -25,8 +24,16 @@ export async function POST({ request }) {
 
 		if (data?.group_idx) return json({ isSuccess: true });
 
-		resp = await supabase.from("MEETING_GROUP")
+		const {data: {group_idx}} = await supabase.from("MEETING_GROUP")
             .upsert({ meeting_idx, attending_user: id})
+			.select("group_idx").maybeSingle();
+
+		// 메모 만들기
+		await supabase.from("MEMO")
+			.insert([{
+				meeting_group_idx: group_idx,
+				writer_id: writer_id
+			}]);
 	} catch (e) {
 		const errorMsg = `목원 ${id}를 출석하는데 에러가 발생했습니다.`;
 		console.error(err, errorMsg);
@@ -55,6 +62,9 @@ export async function DELETE ({ request }) {
 	}
 
 	try {
+		await supabase.from('MEMO').delete()
+			.eq('meeting_group_idx', group_idx);
+
 		await supabase.from('MEETING_GROUP').delete()
 			.eq('group_idx', group_idx);
 	} catch (err) {

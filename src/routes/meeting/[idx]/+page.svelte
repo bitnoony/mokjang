@@ -3,6 +3,7 @@
     import userImg from '$lib/assets/user.svg';
     import MokwonInfo from '../../mokwon/mokwonInfo.svelte';
     import Participant from './Participant.svelte';
+    import Memo from './Memo.svelte';
     import {getMokwonList} from '../../mokwon/mokwon.js';
     export let data;
     let {meeting, userId} = data;
@@ -24,14 +25,15 @@
         const meetingIdx = meeting.idx;
         let {data} = await supabase
             .from('MEETING_GROUP')
-            .select("*, USERS (name), MEMO (content)")
+            .select("*, USERS (name), MEMO (content, comment)")
 	        .eq('meeting_idx', meetingIdx);
 
         participantList = data.map(p => {
             return {
                 groupIdx: p.group_idx,
                 name: p.USERS.name,
-                memo: p.MEMO[0]?.content ?? ""
+                memo: p.MEMO[0]?.content ?? "",
+                comment: p.MEMO[0]?.comment ?? ""
             }
         });
     }
@@ -40,11 +42,13 @@
         let result;
         const meetingIdx = meeting.idx;
         try {
+            const {data: { user }} = await supabase.auth.getUser();
             result = await fetch('/api/meeting/participant', {
                 method: "POST",
                 body: JSON.stringify({
                     meeting_idx: meetingIdx,
-                    id: mokwonId
+                    id: mokwonId,
+                    writer_id: user?.id
                 }),
                 headers: {
                     'Content-Type': 'application/json'
@@ -59,7 +63,6 @@
         // 리프레시
         getParticipantList();
     }
-    
 </script>
 
 <style>
@@ -97,7 +100,12 @@
                 </div>
             </div>
         </div>
-        <div class="memo-info-wrap">사람 메모 코멘트</div>
+        <div class="memo-info-wrap">
+            <!-- 이름순 -->
+            {#each participantList as {groupIdx, name, memo, comment}}
+                <Memo {groupIdx} {name} {memo} {comment}/>    
+            {/each}
+        </div>
     </div>
     <div class="mokwon-container">
         <div class="mokwon-list">
