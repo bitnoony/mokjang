@@ -1,9 +1,9 @@
 import { supabase } from "$lib/supabaseClient";
-import { redirect, error } from "@sveltejs/kit";
 export const ssr = false;
 
-export async function load({ params }) {
+export async function load({ params, url }) {
 	const idx = params.idx;
+	const mokjangIdx = url.searchParams.get('mokjang');
 	const {data: { user }} = await supabase.auth.getUser();
 	const userId = user?.id;
 	
@@ -19,5 +19,5 @@ export async function load({ params }) {
 		window.history.back();
 	}
 
-	return { meeting: MEETING, userId };
+	return { meeting: MEETING, userId, mokjangIdx };
 }

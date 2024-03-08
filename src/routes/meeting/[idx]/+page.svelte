@@ -4,25 +4,24 @@
     import MokwonInfo from '../../mokwon/mokwonInfo.svelte';
     import Participant from './Participant.svelte';
     import Memo from './Memo.svelte';
-    import {getMokwonList} from '../../mokwon/mokwon.js';
+    import {getMokwonListInMokjang} from '../../mokwon/mokwon.js';
     export let data;
-    let {meeting, userId} = data;
+    let {meeting, userId, mokjangIdx} = data;
+    let {idx: meetingIdx, meeting_title, meeting_date, place, memo} = meeting;
     let mokwonInfoComponent;
     let mokwonList = [];
     let participantList = [];
     $:participantList;
-    // console.log(meeting);
-
+    
     init();
 
     async function init() {
-        const data = await getMokwonList(userId);
+        const data = await getMokwonListInMokjang(userId, mokjangIdx);
         mokwonList = data.mokwonList;
         getParticipantList();
     }
 
     async function getParticipantList() {
-        const meetingIdx = meeting.idx;
         let {data} = await supabase
             .from('MEETING_GROUP')
             .select("*, USERS (name), MEMO (content, comment)")
@@ -40,7 +39,6 @@
 
     async function makeAttendance(mokwonId) {
         let result;
-        const meetingIdx = meeting.idx;
         try {
             const {data: { user }} = await supabase.auth.getUser();
             result = await fetch('/api/meeting/participant', {
@@ -63,6 +61,23 @@
         // 리프레시
         getParticipantList();
     }
+
+    async function updateMeeting(e) {
+        const columnName = e.target.name;
+        const value = e.target.value;
+
+        const { data, error } = await supabase
+            .from('MEETING')
+            .update({ [columnName]: value, modified_date: new Date().toISOString() })
+            .eq('idx', meetingIdx)
+            .select();
+        console.log(data);
+
+        if (error) { 
+            alert("수정중 문제가 발생했습니다.");
+            console.error(error);
+        }
+    }
 </script>
 
 <style>
@@ -75,18 +90,22 @@
             <div class="meeting-info-group">
                 <div class="meeting-name input-group">
                     <span class="input-group-text">모임이름</span>
-                    <input type="text" class="form-control" placeholder="모임 이름을 적어주세요.">
+                    <input name="meeting_title" type="text" class="form-control" placeholder="모임 이름을 적어주세요." bind:value={meeting_title} on:change={updateMeeting}>
                 </div>
                 <div class="meeting-info">
                     <div class="input-group mb-2">
                         <span class="input-group-text">날짜</span>
-                        <input type="text" class="form-control" placeholder="날짜를 입력해 주세요.">
+                        <input name="meeting_date" type="date" class="form-control" placeholder="날짜를 입력해 주세요." bind:value={meeting_date} on:change={updateMeeting}>
                     </div>
                     <div class="input-group mb-2">
                         <span class="input-group-text">장소</span>
-                        <input type="text" class="form-control" placeholder="장소를 입력해 주세요.">
+                        <select name="place" class="form-select" bind:value={place} on:change={updateMeeting}>
+                            {#each participantList as {name}}
+                                <option value="{name}">{name}</option>
+                            {/each}
+                        </select>
                     </div>
-                    <textarea cols="30" rows="5" class="form-control meeting-comment" placeholder="코멘트를 입력해 주세요."></textarea>
+                    <textarea name="memo" cols="30" rows="5" class="form-control meeting-comment" placeholder="코멘트를 입력해 주세요." on:change={updateMeeting} bind:value={memo}></textarea>
                 </div>
             </div>
             <div class="meeting-list-group">

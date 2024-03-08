@@ -1,6 +1,7 @@
 <script>
 	import {goto} from '$app/navigation';
 
+    export let mokjang_idx;
     export let idx;
     export let title;
     export let date;
@@ -9,7 +10,7 @@
     let memberCount = members.length;
 
     function gotoMeeting() {
-        goto(`/meeting/${idx}`);
+        goto(`/meeting/${idx}?mokjang=${mokjang_idx}`);
     }
 </script>
 

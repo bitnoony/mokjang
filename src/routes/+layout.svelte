@@ -15,6 +15,10 @@
 			<i class="fa-solid fa-layer-group"></i>
 			목장 리스트
 		</a>
+		<button class="btn btn-secondary" on:click={() => {history.back()}}>
+			<i class="fa-solid fa-arrow-left"></i>
+			뒤로가기
+		</button>
 	</div>
 	<div>
 		<h4>mokjang</h4>

@@ -6,16 +6,16 @@
     export let mokjaId;
     let meetingList = [];
     $: meetingList;
-
+    let mokjangIdx = mokjang.idx;
+    
     getMeetingList();
 
     async function getMeetingList() {
-        const {idx: mokjang_idx} = mokjang;
-
         let {data: dataList} = await supabase
             .from("MEETING")
             .select("idx, meeting_title, place, meeting_date")
-            .eq("mokjang_idx", mokjang_idx);
+            .eq("mokjang_idx", mokjangIdx)
+            .order("meeting_date", { ascending: false });
 
         dataList = dataList.map(data => {
             data.meeting_title = data.meeting_title ?? "";
@@ -28,13 +28,11 @@
     }
 
     async function createMeeting() {
-        const {idx: mokjang_idx} = mokjang;
-
         // 빈 모임 생성
         const response = await fetch("/api/meeting", {
             method: "POST",
             body: JSON.stringify({
-                mokjang_idx: mokjang_idx,
+                mokjang_idx: mokjangIdx,
                 writer_id: mokjaId
             }),
             headers: {'Content-Type': 'application/json'}
@@ -56,8 +54,8 @@
     </button>
     <div class="list-wrap">
         <div class="list-group">
-            {#each meetingList as {idx, meeting_title: title, place, meeting_date: date}}
-                <MeetingItem {idx} {title} {date} {place}  />
+            {#each meetingList as {idx, meeting_title: title, place, meeting_date: date }}
+                <MeetingItem {idx} {title} {date} {place} mokjang_idx={mokjangIdx}  />
             {/each}
         </div>
     </div>

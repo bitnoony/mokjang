@@ -45,7 +45,7 @@
 
 <style>
 	form {
-		height: 100vh;
+		height: 100%;
 		display: flex;
 		align-items: center;
 	}
@@ -59,18 +59,11 @@
 		display: flex;
 		justify-content: center;
 	}
-
-	.large-button {
-		width: 200px;
-		height: 75px;
-		font-size: 20pt;
-		font-weight: bold;
-	}
 </style>
 
 <form action="/api/user-info" method="POST" bind:this={userForm} on:submit={formSubmit}>
-	<div class="container card">
-		<div class="d-flex justify-content-center my-5">
+	<div class="container">
+		<div class="d-flex justify-content-center my-3">
 			<h1>목자 정보 입력</h1>
 		</div>
 		<div class="d-flex justify-content-between align-items-center">
@@ -134,7 +127,7 @@
 		</div>
 		<div class="d-flex justify-content-center my-2">
 			<input type="hidden" name="id" value="{data.id}">
-			<button class="btn btn-success large-button" on:click={userForm.submit}>제 출</button>
+			<button class="btn btn-lg btn-success" on:click={userForm.submit}>제출</button>
 		</div>
 	<div>
 </form>

@@ -1,5 +1,5 @@
 <script>
-    import {getMokwonListInMokjang} from '../../mokwon/mokwon.js';
+    import {getUserListWithMokwon} from '../../mokwon/mokwon.js';
     import lambImg from '$lib/assets/lamb.svg';
     import userImg from '$lib/assets/user.svg';
     
@@ -10,7 +10,7 @@
     init();
 
     async function init() {
-        const {mokwonList: list} = await getMokwonListInMokjang(mokjaId, mokjang.idx);
+        const {mokwonList: list} = await getUserListWithMokwon(mokjaId, mokjang.idx);
         mokwonList = list;
     }
 

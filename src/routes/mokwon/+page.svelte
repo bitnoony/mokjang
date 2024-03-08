@@ -72,9 +72,9 @@
 	<div class="mokwon-container-divider">
 		<div class="mokwon-divider-body">
 			<header><h1>목원 리스트</h1></header>
-			<section>
+			<section style="height: calc(100% - 100px);">
 				<button class="btn btn-sm btn-success" on:click={addMokwon}>추가</button>
-				<div>
+				<div class="overflow-y-auto h-100">
 					{#each mokwonList as mokwon}
 						<div class="mokwon-item" on:click={e => {getMokwonInfo(mokwon.id)}}>
 							<div>{mokwon.name}</div>
