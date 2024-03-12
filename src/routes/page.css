@@ -1,0 +1,16 @@
+textarea::-webkit-scrollbar,
+.common-scroll::-webkit-scrollbar{
+    width: 5px;
+}
+
+textarea::-webkit-scrollbar-thumb,
+.common-scroll::-webkit-scrollbar-thumb{
+    height: 30%;
+    background: lightgray;
+    border-radius: 10px;
+}
+
+textarea::-webkit-scrollbar-track,
+.common-scroll::-webkit-scrollbar-track{
+    background: #f1f7ff1a;
+}

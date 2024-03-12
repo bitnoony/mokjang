@@ -224,12 +224,12 @@
 	<!-- 모달 -->
 	<div class="modal-center d-none" bind:this={modal}>
 		<div class="modal-content rounded-4 shadow bg-white">
-			<div class="modal-header p-5 pb-4 border-bottom-0">
-			<h1 class="fw-bold mb-0 fs-2">목장 {mokjangModalType}</h1>
-			<button type="button" class="btn-close" on:click={modalClose}></button>
+			<div class="modal-header p-3 pb-2 border-bottom-0">
+				<h1 class="fw-bold mb-0 fs-4">목장 {mokjangModalType}</h1>
+				<button type="button" class="btn-close py-2 fs-4" on:click={modalClose}></button>
 			</div>
 	
-			<div class="modal-body p-5 pt-0">
+			<div class="modal-body p-3 pt-0">
 				<div class="form-floating mb-3">
 					<input type="text" class="form-control rounded-3" id="floatingMokjang" bind:value="{modalMokjangName}">
 					<label for="floatingMokjang">목장 이름</label>

@@ -14,7 +14,9 @@ async function getMokwonList(userId) {
 
 async function getMokwonListInMokjang(userId, mokjangIdx) {
 	let { mokwonList } = await getMokwonList(userId);
-	let {data: mokwonLink} = await supabase.from('MOKWON').select('user_id')
+	let {data: mokwonLink} = await supabase
+		.from('MOKWON')
+		.select('user_id')
 		.eq('mokjang_idx', mokjangIdx);
 
 	mokwonLink = mokwonLink.map(ml => ml.user_id);

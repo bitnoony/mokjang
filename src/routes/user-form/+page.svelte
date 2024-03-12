@@ -44,6 +44,11 @@
 </script>
 
 <style>
+	.mokja-container {
+		width: 600px;
+		margin: 2rem auto 0 auto;
+	}
+
 	form {
 		height: 100%;
 		display: flex;
@@ -62,9 +67,9 @@
 </style>
 
 <form action="/api/user-info" method="POST" bind:this={userForm} on:submit={formSubmit}>
-	<div class="container">
-		<div class="d-flex justify-content-center my-3">
-			<h1>목자 정보 입력</h1>
+	<div class="mokja-container">
+		<div class="d-flex justify-content-center">
+			<h4 class="fw-bold">목자 정보</h4>
 		</div>
 		<div class="d-flex justify-content-between align-items-center">
 			<div class="mx-2">

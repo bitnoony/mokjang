@@ -29,9 +29,17 @@
 	}
 
 	.mokwon-container-divider {
-		width: 50%;
 		padding: 1rem 0.5rem;
 		height: 100%;
+	}
+	.mokwon-container-divider.list {
+		width: 20%;
+	}
+	.mokwon-container-divider.detail {
+		width: 30%;
+	}
+	.mokwon-container-divider.history {
+		width: 50%;
 	}
 
 	.mokwon-divider-body {
@@ -40,27 +48,27 @@
 		height: 100%;
 	}
 
-	.mokwon-divider-body > header {
-		padding: 0.5rem 1rem;
-		text-align: center;
-	}
-
 	.mokwon-divider-body > section {
 		padding: 0.5rem 1rem;
+		height: 100%;
+	}
+
+	.mokwon-divider-body > section.mokwon-list-section {
+		height: calc(100% - 40px);
 	}
 
 	.mokwon-item {
 		display: flex;
 		justify-content: space-between;
 		padding: 0.25rem 0.5rem;
-		border: 1px solid lightgray;
-		border-radius: 4px;
-		margin: 4px 0;
 		cursor: pointer;
 	}
 
-	.mokwon-item > div {
+	.mokwon-item > div:last-child {
 		width: 25%;
+	}
+	.mokwon-item > div:first-child {
+		width: 75%;
 	}
 
 	.mokwon-item:hover {
@@ -68,28 +76,30 @@
 	}
 </style>
 
-<div class="container mokwon-container">
-	<div class="mokwon-container-divider">
+<div class="mokwon-container">
+	<div class="mokwon-container-divider list">
 		<div class="mokwon-divider-body">
-			<header><h1>목원 리스트</h1></header>
-			<section style="height: calc(100% - 100px);">
-				<button class="btn btn-sm btn-success" on:click={addMokwon}>추가</button>
-				<div class="overflow-y-auto h-100">
+			<section class="mokwon-list-section">
+				<div class="mb-2">
+					<button class="btn btn-sm btn-success" on:click={addMokwon}>추가</button>
+				</div>
+				<div class="overflow-y-auto h-100 list-group common-scroll">
 					{#each mokwonList as mokwon}
-						<div class="mokwon-item" on:click={e => {getMokwonInfo(mokwon.id)}}>
+						<a href="#" class="mokwon-item list-group-item list-group-item-action list-item" 
+							on:click|preventDefault={e => {getMokwonInfo(mokwon.id)}}
+						>
 							<div>{mokwon.name}</div>
 							<div>{mokwon.type}</div>
-							<div>{mokwon.USER_INFO?.birthday ?? ""}</div>
-							<div>{mokwon.USER_INFO?.phone ?? ""}</div>
-						</div>
+							<!-- <div>{mokwon.USER_INFO?.birthday ?? ""}</div>
+							<div>{mokwon.USER_INFO?.phone ?? ""}</div> -->
+						</a>
 					{/each}
 				</div>
 			</section>
 		</div>
 	</div>
-	<div class="mokwon-container-divider">
+	<div class="mokwon-container-divider detail">
 		<div class="mokwon-divider-body">
-			<header><h1>목원 정보</h1></header>
 			<section>
 				<MokwonInfo 
 				mokja_id={mokja_id}
@@ -97,6 +107,11 @@
 				on:message={refreshMokwonList}
 				/>
 			</section>
+		</div>
+	</div>
+	<div class="mokwon-container-divider history">
+		<div class="mokwon-divider-body">
+			
 		</div>
 	</div>
 </div>

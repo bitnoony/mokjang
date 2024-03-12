@@ -4,6 +4,8 @@
 
 	export let mokja_id;
 	let mokwonInfo;
+	let uploadImage;
+	let profile;
 	$: mokwonInfo = setMokwonInfo();
 
 	function setMokwonInfo(mokwonInfo = null) {
@@ -136,6 +138,14 @@
 			alert("삭제 되었습니다.");
 		}
 	}
+
+	function clickFile(e) {
+		uploadImage.click();
+	}
+
+	function changeImage(e) {
+		console.log(e);
+	}
 </script>
 
 <style>
@@ -171,7 +181,7 @@
 	}
 
 	.mokwon-name {
-		width: calc(100% - 170px);
+		width: 100%;
 	}
 
 	.input-group-text {
@@ -179,30 +189,30 @@
 	}
 </style>
 
-<div>
+<div class="h-100">
+	<div>
+		{#if mokwonInfo.id === ""}
+		<button class="btn btn-sm btn-lg btn-success" on:click={saveMokwon}>저장</button>
+		{:else}
+		<button class="btn btn-sm btn-lg btn-primary" on:click={modifyMokwon}>수정</button>
+		{/if}
+		<button class="btn btn-sm btn-lg btn-danger" on:click={deleteMokwon} disabled={mokwonInfo.id === ""}>삭제</button>
+	</div>
 	<div class="mokwon-primary-info-row">
-		<div class="primary-info-divide profile">프로필</div>
+		<button class="primary-info-divide profile bg-white" bind:this={profile} on:click={clickFile}></button>
+		<input type="file" bind:this={uploadImage} hidden on:change={changeImage}>
 		<div class="primary-info-divide">
 			<div>
 				<div class="mokwon-name input-group input-group-sm">
 					<span class="input-group-text">이름</span>
-					<input type="text" class="form-control" placeholder="목원 이름" bind:value={mokwonInfo.name}>
-					<select class="form-select" bind:value={mokwonInfo.type}>
+					<input type="text" class="form-control" placeholder="목원 이름" bind:value={mokwonInfo.name} style="width:143px;">
+					<select class="form-select" bind:value={mokwonInfo.type} style="">
 						<option value="목자">목자</option>
 						<option value="권찰">권찰</option>
 						<option value="부목자">부목자</option>
 						<option value="부권찰">부권찰</option>
 						<option value="목원" selected>목원</option>
 					</select>
-				</div>
-				<div class="mokwon-comment">
-					{#if mokwonInfo.id === ""}
-					<button class="btn btn-sm btn-lg btn-success" on:click={saveMokwon}>저장</button>
-					{:else}
-					<button class="btn btn-sm btn-lg btn-primary" on:click={modifyMokwon}>수정</button>
-					{/if}
-					<button class="btn btn-sm btn-lg btn-danger" on:click={deleteMokwon} disabled={mokwonInfo.id === ""}>삭제</button>
-					<button class="btn btn-sm btn-secondary">코멘트</button>
 				</div>
 			</div>
 			<div class="d-flex justify-content-center align-items-center">
@@ -264,7 +274,7 @@
 			</select>
 		</div>
 	</div>
-	<div>
+	<div class="my-2">
 		<div class="d-flex justify-content-center align-items-center">
 			<div class="input-group input-group-sm me-1">
 				<span class="input-group-text">세례년도</span>
@@ -276,7 +286,7 @@
 			</div>
 		</div>
 	</div>
-	<div>
-		<div class="my-3">히스토리</div>
+	<div style="height: calc(100% - 430px);">
+		<textarea cols="30" rows="10" class="form-control h-100" placeholder="목원 메모"></textarea>
 	</div>
 </div>

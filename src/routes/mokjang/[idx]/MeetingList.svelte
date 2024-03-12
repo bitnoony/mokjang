@@ -1,7 +1,6 @@
 <script>
     import { supabase } from "$lib/supabaseClient";
     import MeetingItem from './MeetingItem.svelte';
-    import DateUtil from '$lib/utils/DateUtil.js';
     export let mokjang;
     export let mokjaId;
     let meetingList = [];
@@ -13,14 +12,16 @@
     async function getMeetingList() {
         let {data: dataList} = await supabase
             .from("MEETING")
-            .select("idx, meeting_title, place, meeting_date")
+            .select(`idx, meeting_title, place, meeting_date, MEETING_GROUP("meeting_idx")`)
             .eq("mokjang_idx", mokjangIdx)
             .order("meeting_date", { ascending: false });
+    
 
         dataList = dataList.map(data => {
             data.meeting_title = data.meeting_title ?? "";
             data.place = data.place ?? "";
             data.meeting_date = data.meeting_date ?? "";
+            data.count = data.MEETING_GROUP.length;
             return data;
         });
 
@@ -54,8 +55,17 @@
     </button>
     <div class="list-wrap">
         <div class="list-group">
-            {#each meetingList as {idx, meeting_title: title, place, meeting_date: date }}
-                <MeetingItem {idx} {title} {date} {place} mokjang_idx={mokjangIdx}  />
+            {#each meetingList as {idx, meeting_title: title, place, meeting_date: date, count }, i}
+                <MeetingItem 
+                    {idx} 
+                    {title} 
+                    {date} 
+                    {place} 
+                    mokjang_idx={mokjangIdx} 
+                    {count} 
+                    number={meetingList.length - i}
+                    on:refresh={getMeetingList}
+                />
             {/each}
         </div>
     </div>

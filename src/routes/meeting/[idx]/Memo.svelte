@@ -1,7 +1,9 @@
 <script>
+    import userImg from '$lib/assets/user.svg';
     export let groupIdx;
     export let name;
     export let memo;
+    export let profile_image;
     $:memo;
     export let comment;
     $:comment;
@@ -57,11 +59,9 @@
 
     .memo-item {
         display: flex;
-        padding: 0.5rem 1rem;
-        border: 1px solid lightgray;
-        background-color: ghostwhite;
-        border-radius: 10px;
-        margin: 0.5rem 0;
+        align-items: center;
+        padding: 0.25rem 0.5rem;
+        background-color: aliceblue;
     }
     .memo-item.success {
         animation-name: background-change;
@@ -93,14 +93,17 @@
     }
 </style>
 
-<div bind:this={item} class="memo-item" class:success={isSave} data-idx={groupIdx}>
+<div bind:this={item} class="memo-item list-group-item list-group-item-action" class:success={isSave} data-idx={groupIdx}>
+    <div>
+        <img src="{profile_image ?? userImg}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 me-3">
+    </div>
     <div class="participant-name">
         {name}
     </div>
     <div class="participant-memo">
-        <textarea class="editable-area form-control" cols="30" rows="1" on:input={adjustHeight} on:blur={blur} on:keydown={keypressEvent} bind:value={memo} />
+        <textarea class="editable-area form-control" cols="30" rows="1" placeholder="메모" on:input={adjustHeight} on:blur={blur} on:keydown={keypressEvent} bind:value={memo} />
     </div>
     <div class="participant-comment">
-        <textarea class="editable-area form-control" cols="30" rows="1" on:input={adjustHeight} on:blur={blur} on:keydown={keypressEvent} bind:value={comment} />
+        <textarea class="editable-area form-control" cols="30" rows="1" placeholder="코멘트" on:input={adjustHeight} on:blur={blur} on:keydown={keypressEvent} bind:value={comment} />
     </div>
 </div>
