@@ -8,11 +8,11 @@
 
 <style>
 	section.mokjang-container {
-		margin: 1rem auto;
+		margin-top: 1rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		height: calc(100vh - 2rem - 60px);
+		height: calc(100vh - 100px);
 	}
 
 	section.mokjang-container > article {

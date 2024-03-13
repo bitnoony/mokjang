@@ -72,6 +72,7 @@
 .meeting-section > .mokwon-container > .mokwon-info {
     width: 100%;
     height: calc(70% - 1rem);
+    background-color: white;
     border: 1px solid lightgray;
     border-radius: 10px;
     padding: 0.5rem;

@@ -43,6 +43,7 @@
 	}
 
 	.mokwon-divider-body {
+		background-color: white;
 		border: 1px solid lightgray;
 		border-radius: 10px;
 		height: 100%;

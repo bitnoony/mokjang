@@ -1,5 +1,6 @@
 
 .list-container {
+    background-color: white;
     border: 1px solid lightgray;
     border-radius: 10px;
     padding: 0.5rem;
@@ -10,21 +11,11 @@
     margin-bottom: 9px;
 }
 
-.list-wrap {
-    height: calc(100% - 40px);
+.list-container > .list-wrap {
+    height: 100%;
     overflow: hidden auto;
 }
 
-.list-wrap::-webkit-scrollbar {
-    width: 5px;
-}
-
-.list-wrap::-webkit-scrollbar-thumb {
-    height: 30%;
-    background: lightgray;
-    border-radius: 10px;
-}
-
-.list-wrap::-webkit-scrollbar-track {
-    background: #f1f7ff1a;
+.list-container > .list-wrap.meeting-list-wrap {
+    height: calc(100% - 40px);
 }

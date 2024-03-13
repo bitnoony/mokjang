@@ -53,7 +53,7 @@
     <button class="btn btn-sm btn-primary add-btn" on:click={createMeeting}>
         <i class="fa-solid fa-people-group"></i> 모임 추가
     </button>
-    <div class="list-wrap">
+    <div class="list-wrap meeting-list-wrap common-scroll">
         <div class="list-group">
             {#each meetingList as {idx, meeting_title: title, place, meeting_date: date, count }, i}
                 <MeetingItem 

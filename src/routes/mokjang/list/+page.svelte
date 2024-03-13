@@ -140,10 +140,11 @@
 	.card {
 		height: 150px;
 		cursor: pointer;
+		box-shadow: 0 0 10px 0 #0001;
 	}
 
 	.card:hover {
-		background-color: aliceblue;
+		background-color: white;
 		border-color: dodgerblue;
 		color: dodgerblue;
 	}

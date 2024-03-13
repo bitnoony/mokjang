@@ -74,7 +74,7 @@
 </style>
 
 <div class="list-container">
-    <div class="list-wrap">
+    <div class="list-wrap common-scroll">
         <div class="list-group">
             {#each mokwonList as mokwon}
             <a href="#" class="list-group-item list-group-item-action list-item" aria-current="true" on:click={changeMokwonStatus(mokwon)}>

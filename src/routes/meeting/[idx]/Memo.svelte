@@ -61,7 +61,7 @@
         display: flex;
         align-items: center;
         padding: 0.25rem 0.5rem;
-        background-color: aliceblue;
+        background-color: white;
     }
     .memo-item.success {
         animation-name: background-change;

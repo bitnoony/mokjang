@@ -45,6 +45,11 @@
 
 <style>
 	.mokja-container {
+		background-color: white;
+		padding: 1rem;
+		border: 1px solid lightgray;
+		border-radius: 10px;
+		box-shadow: 0 0 10px 0 #0001;
 		width: 600px;
 		margin: 2rem auto 0 auto;
 	}

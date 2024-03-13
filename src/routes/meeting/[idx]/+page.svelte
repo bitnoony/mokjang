@@ -1,7 +1,6 @@
 <script>
     import { supabase } from "$lib/supabaseClient";
     import MokwonInfo from '../../mokwon/mokwonInfo.svelte';
-    import Participant from './Participant.svelte';
     import Memo from './Memo.svelte';
     import {getMokwonListInMokjang} from '../../mokwon/mokwon.js';
     export let data;

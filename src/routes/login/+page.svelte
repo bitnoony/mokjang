@@ -29,7 +29,7 @@
 <style>
 	main {
 		margin: auto;
-		margin-top: calc(50vh - 101px);
+		margin-top: calc(50vh - 160px);
 		width: 400px;
 		display: flex;
 		flex-direction: column;
