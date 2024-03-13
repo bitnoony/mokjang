@@ -4,18 +4,17 @@
 	import bootstrapBundle from "bootstrap/dist/js/bootstrap.bundle.js?url";
 	import "@fortawesome/fontawesome-free/css/all.min.css";
 	import { supabase } from "$lib/supabaseClient";
-    import { onMount } from 'svelte';
-    onMount(layoutSwitching);
-	let isHomeLayout = false;
+	let isHomeLayout = true;
 
-	async function layoutSwitching() {
-		const path = window.location.pathname;
+	init()
+
+	async function init() {
 		const {data: { user }} = await supabase.auth.getUser();
-
-		if (path === "/" || path.includes("login")) {
-			isHomeLayout = true;
-		} else {
+		
+		if (user) {
 			isHomeLayout = false;
+		} else {
+			isHomeLayout = true;
 		}
 	}
 </script>
