@@ -1,6 +1,7 @@
 <script>
 	import "bootstrap/dist/css/bootstrap.css";
 	import "@fortawesome/fontawesome-free/css/all.min.css";
+	import {PUBLIC_BASE_URL} from "$env/static/public";
 	import { supabase } from "$lib/supabaseClient";
 
 	async function googleLogin() {
@@ -11,7 +12,8 @@
 					access_type: 'offline',
 					prompt: 'consent',
 				},
-				redirectTo: "/login",
+				redirectTo: PUBLIC_BASE_URL,
+				// skipBrowserRedirect: false,
 			},
 		})
 	}
