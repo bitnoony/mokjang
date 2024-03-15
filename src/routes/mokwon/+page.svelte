@@ -1,13 +1,16 @@
 <script>
 	import MokwonInfo from './mokwonInfo.svelte';
+	import MokwonHistoryList from './MokwonHistoryList.svelte';
 	import {getMokwonList} from './mokwon.js';
 
 	export let data;
 	let mokwonInfoComponent;
+	let mokwonHistoryListComponent;
 	let {mokwonList, mokja_id} = data;
 
 	async function getMokwonInfo(mokwonId) {
 		mokwonInfoComponent.getMokwonInfo(mokwonId);
+		mokwonHistoryListComponent.getMokwonHistory(mokwonId);
 	}
 
 	async function refreshMokwonList() {
@@ -112,7 +115,9 @@
 	</div>
 	<div class="mokwon-container-divider history">
 		<div class="mokwon-divider-body">
-			
+			<MokwonHistoryList 
+			bind:this={mokwonHistoryListComponent}
+			/>
 		</div>
 	</div>
 </div>

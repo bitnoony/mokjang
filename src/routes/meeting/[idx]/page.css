@@ -82,3 +82,17 @@
 .meeting-section .meeting-comment {
     height: calc(100% - 92px);
 }
+
+.mokwon-tab {
+    color: black;
+    width: 50%;
+}
+
+.tab-content {
+    padding: 0.5rem;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 0 0 10px 10px;
+    border-top: 0;
+    height: calc(100% - 42px);
+}

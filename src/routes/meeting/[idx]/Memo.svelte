@@ -1,5 +1,6 @@
 <script>
     import userImg from '$lib/assets/user.svg';
+	import { onMount } from 'svelte';
     export let groupIdx;
     export let name;
     export let memo;
@@ -8,9 +9,14 @@
     export let comment;
     $:comment;
     let item;
+    let areaMemo;
+    let areaComment;
     let isSave = false;
-
-    function keypressEvent() {
+    onMount(e => {
+        adjustHeight();
+    })
+    
+    function keypressEvent(e) {
         if (e.key === "Enter" && e.ctrlKey) {
             e.preventDefault(); // 기존 Enter 기능을 제거
             save();
@@ -39,22 +45,21 @@
         }
     }
 
-    function adjustHeight(e) {
-        // TODO: 부모 높이가 크면 부모의 높이 (100%) 아니면 내 높이로 설정하기.
-        const $textarea = e.target ?? e;
-        $textarea.style.minHeight = 'auto'; // 기존 높이 초기화
-        let scrollHeight = 0;
-        for (const area of item.querySelectorAll(".editable-area")) {
-            scrollHeight = Math.max(scrollHeight, area.scrollHeight);
-        }
-        $textarea.style.minHeight = scrollHeight + 'px'; // 새로운 높이 적용
+    function adjustHeight() {
+        // height init
+        areaMemo.style.height = 'auto';
+        areaComment.style.height = 'auto';
+
+        let maxHeight = Math.max(areaComment.scrollHeight, areaMemo.scrollHeight) + 2;
+        areaMemo.style.height = maxHeight + 'px';
+        areaComment.style.height = maxHeight + 'px';
     }
 </script>
 
 <style>
     @keyframes background-change {
-        0% { border-color: green; }
-        100% { border-color: lightgray; }
+        0% { background-color: #d8edff; }
+        100% { background-color: white; }
     }
 
     .memo-item {
@@ -88,9 +93,13 @@
 
     .editable-area {
         height: auto;
-        overflow: hidden;
+        overflow: hidden auto;
         resize: none;
     }
+    .editable-area::placeholder {
+        color: #ddd
+    }
+
 </style>
 
 <div bind:this={item} class="memo-item list-group-item list-group-item-action" class:success={isSave} data-idx={groupIdx}>
@@ -101,9 +110,15 @@
         {name}
     </div>
     <div class="participant-memo">
-        <textarea class="editable-area form-control" cols="30" rows="1" placeholder="메모" on:input={adjustHeight} on:blur={blur} on:keydown={keypressEvent} bind:value={memo} />
+        <textarea class="editable-area form-control" cols="30" placeholder="메모" 
+        bind:this={areaMemo} on:blur={blur} 
+        on:keydown={keypressEvent} on:input={adjustHeight}
+        bind:value={memo} />
     </div>
     <div class="participant-comment">
-        <textarea class="editable-area form-control" cols="30" rows="1" placeholder="코멘트" on:input={adjustHeight} on:blur={blur} on:keydown={keypressEvent} bind:value={comment} />
+        <textarea class="editable-area form-control" cols="30" placeholder="코멘트" 
+        bind:this={areaComment} on:blur={blur} 
+        on:keydown={keypressEvent} on:input={adjustHeight}
+        bind:value={comment} />
     </div>
 </div>

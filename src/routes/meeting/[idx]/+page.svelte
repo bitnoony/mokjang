@@ -181,8 +181,31 @@
         </div>
     </div>
     <div class="mokwon-container">
-        <div class="mokwon-info common-scroll">
-            <MokwonInfo mokja_id={userId} bind:this={mokwonInfoComponent} on:message={getList} />
+        <nav>
+            <div class="nav nav-tabs d-flex justify-content-between" id="nav-tab" role="tablist">
+                <button class="mokwon-tab nav-link active" id="tabMokwonInfo" data-bs-toggle="tab" 
+                    data-bs-target="#tabMokwonInfoWrap" type="button" role="tab" 
+                    aria-controls="tabMokwonInfoWrap" aria-selected="true">
+                    목원정보
+                </button>
+                <button class="mokwon-tab nav-link" id="tabMokwonHistory" data-bs-toggle="tab" 
+                    data-bs-target="#tabMokwonHistoryWrap" type="button" role="tab" 
+                    aria-controls="tabMokwonHistoryWrap" aria-selected="false">
+                    히스토리
+                </button>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="tabMokwonInfoWrap" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                <div class="mokwon-info common-scroll">
+                    <MokwonInfo mokja_id={userId} bind:this={mokwonInfoComponent} on:message={getList} />
+                </div>
+            </div>
+            <div class="tab-pane fade" id="tabMokwonHistoryWrap" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                <div class="common-scroll">
+                    히스토리
+                </div>
+            </div>
         </div>
     </div>
 </section>

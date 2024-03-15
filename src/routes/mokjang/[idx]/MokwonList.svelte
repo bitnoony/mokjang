@@ -14,28 +14,28 @@
         mokwonList = list;
     }
 
-    async function changeMokwonStatus(mokwon) {
+    async function changeMokwonStatus(e, mokwon) {
+        let alertMsg = "";
+        const isMokwonCheck = e.target.checked;
+        if (e.target.checked) {
+            alertMsg = "정말로 목장에 들여오시겠습니까?";
+        } else {
+            alertMsg = "정말로 목장에서 내보내시겠습니까?";
+        }
+
         const mokjangIdx = mokjang.idx;
         const {id: mokwonId, type, isMokwon} = mokwon;
-        if (type === "목자") return;
 
-        if (isMokwon && confirm("정말로 목장에서 내보내시겠습니까?")) {
-            const response = await fetch("/api/mokjang/mokwon", {            
-                method: "DELETE",
-                body: JSON.stringify({
-                    mokjang_idx: mokjangIdx,
-                    user_id: mokwonId
-                }),
-                headers: {'Content-Type': 'application/json'}
-            });
+        if (type === "목자") {
+            return;
+        }
+        if (!confirm(alertMsg)) {
+            e.target.checked = !isMokwonCheck;
+            mokwon.isMokwon = !isMokwonCheck;
+            return;
+        }
 
-            const {isSuccess} = await response.json();
-
-            if (isSuccess) {
-                alert("목원을 내보냈습니다.");
-                init();
-            }
-        } else if (!isMokwon && confirm("정말로 목장에 들여오시겠습니까")) {
+        if (isMokwonCheck) {
             const response = await fetch("/api/mokjang/mokwon", {
                 method: "POST",
                 body: JSON.stringify({
@@ -53,6 +53,22 @@
                 alert("목원으로 등록되었습니다.");
                 init();
             }
+        } else if (!isMokwonCheck) {
+            const response = await fetch("/api/mokjang/mokwon", {            
+                method: "DELETE",
+                body: JSON.stringify({
+                    mokjang_idx: mokjangIdx,
+                    user_id: mokwonId
+                }),
+                headers: {'Content-Type': 'application/json'}
+            });
+
+            const {isSuccess} = await response.json();
+
+            if (isSuccess) {
+                alert("목원을 내보냈습니다.");
+                init();
+            }
         }
     }
 </script>
@@ -60,16 +76,11 @@
 <style>
 	@import './component_list.css';
 
-    .list-item {
+    .mokwon-list-item {
         display: flex;
         align-items: center;
-        padding: 1rem;
-    }
-
-    .lamb {
-        background-color: mistyrose;
-        border: 1px solid #9a746f;
-        border-radius: 24px;
+        padding: 0.25rem 0.5rem;
+        width: 100%;
     }
 </style>
 
@@ -77,44 +88,27 @@
     <div class="list-wrap common-scroll">
         <div class="list-group">
             {#each mokwonList as mokwon}
-            <a href="#" class="list-group-item list-group-item-action list-item" aria-current="true" on:click={changeMokwonStatus(mokwon)}>
-                <img src="{mokwon?.profile_image ?? userImg}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 me-3">
-                <div class="d-flex gap-2 w-100 justify-content-between">
-                    <div>
-                    <h6 class="mb-1">
-                        {mokwon.name}
-                        <span class="align-bottom badge text-bg-{mokwon.type === "목자" ? "danger" : "success"}">
+            <li class="list-group-item list-group-item-action list-item mokwon-list-item" aria-current="true">
+                <input class="form-check-input me-3 c-pointer" type="checkbox"
+                    bind:checked={mokwon.isMokwon} disabled={mokwon.type === "목자"}
+                    on:click={e => {changeMokwonStatus(e, mokwon)}}>
+                <div class="d-flex align-items-center justify-content-between w-100">
+                    <div class="d-flex align-items-center">
+                        <img src="{mokwon?.profile_image ?? userImg}" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0 me-3">
+                        <span>{mokwon.name}&nbsp;</span>
+                        <span class="ms-1 align-bottom badge text-bg-{mokwon.type === "목자" ? "danger" : "success"}">
                             {mokwon.type}
                         </span>
-                    </h6>
-                    <p class="mb-0 opacity-75">
-                        <span class="mx-1">
-                            <i class="fa-solid fa-cake-candles"></i>&nbsp;
-                            { 
-                                mokwon?.USER_INFO?.birthday
-                                ? mokwon?.USER_INFO?.birthday?.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3') 
-                                : "-" 
-                            }
-                        </span>
-                        <span class="mx-1">
-                            <i class="fa-solid fa-mobile"></i>&nbsp;
-                            { 
-                                mokwon?.USER_INFO?.phone
-                                ? mokwon?.USER_INFO?.phone?.replace(/(\d{3})(\d{3,4})(\d{3,4})/, '$1-$2-$3') 
-                                : "-" 
-                            }
-                        </span>
-                        <span class="mx-1">
-                            <i class="fa-solid fa-heart"></i>&nbsp;
-                            {mokwon?.USER_INFO?.partner ? mokwon?.USER_INFO?.partner : "없음"}
-                        </span>
-                    </p>
                     </div>
-                    {#if mokwon.isMokwon}
-                    <img src="{lambImg}" alt="목원" width="48" height="48" class="lamb">
-                    {/if}
+                    <div class="d-flex align-items-center">
+                        {#if mokwon.isMokwon}
+                            <span class="badge text-bg-secondary d-flex align-items-center">
+                                {mokjang.mokjang_name}
+                            </span>
+                        {/if}
+                    </div>
                 </div>
-            </a>
+            </li>
             {/each}
         </div>
     </div>
