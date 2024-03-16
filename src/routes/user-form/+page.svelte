@@ -1,14 +1,8 @@
 <script>
-	import "bootstrap/dist/css/bootstrap.css";
-	import bootstrapBundle from "bootstrap/dist/js/bootstrap.bundle.js?url";
-	import "@fortawesome/fontawesome-free/css/all.min.css";
-
-	import { onMount } from 'svelte';
 	import {goto} from '$app/navigation';
 
 	export let data;
 	let userForm;
-	// $:email; // value에 넣기.
 
 	async function formSubmit(event) {
 		event.preventDefault(); // 아마도 막힘.
@@ -38,7 +32,9 @@
 		});
 
 		if (response.ok) {
-			goto('./mokjang/list');
+			alert("적용 되었습니다.")
+		} else {
+			alert("에러가 발생했습니다. 관리자에게 문의하세요.")
 		}
 	}
 </script>
@@ -137,7 +133,7 @@
 		</div>
 		<div class="d-flex justify-content-center my-2">
 			<input type="hidden" name="id" value="{data.id}">
-			<button class="btn btn-lg btn-success" on:click={userForm.submit}>제출</button>
+			<button class="btn btn-lg btn-success" on:click={userForm.submit}>저장</button>
 		</div>
 	<div>
 </form>

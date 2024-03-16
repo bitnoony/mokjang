@@ -3,6 +3,7 @@
 	import "bootstrap/dist/css/bootstrap.css";
 	import bootstrapBundle from "bootstrap/dist/js/bootstrap.bundle.js?url";
 	import "@fortawesome/fontawesome-free/css/all.min.css";
+	import {goto} from '$app/navigation';
 	import { supabase } from "$lib/supabaseClient";
 	let isHomeLayout = true;
 
@@ -17,40 +18,33 @@
 			isHomeLayout = true;
 		}
 	}
+
+	async function login() {
+		const { data, error } = await supabase.auth.signInWithOAuth({
+			provider: 'google',
+			options: {
+				queryParams: {
+					access_type: 'offline',
+					prompt: 'consent',
+				},
+				// redirectTo: PUBLIC_BASE_URL,
+				// skipBrowserRedirect: false,
+			},
+		});
+		console.log(data, error);
+	}
+
+	async function logout() {
+		if (confirm("정말로 로그아웃 하시겠습니까?")) {
+			await supabase.auth.signOut();
+			goto("/");
+		}
+	}
 </script>
 
 <style>
 	@import './page.css';
-	nav.layout-nav-wrap {
-		height: 60px;
-		width: 100vw;
-		background-color: white;
-		border-bottom: 1px solid lightgray;
-		display: flex;
-		align-items: center;
-	}
-
-	nav.layout-nav-wrap > .layout-nav {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding: 0 20px;
-	}
-
-	nav.layout-nav-wrap > .layout-nav > div.left-part {
-		text-align: start;
-		width: 25%;
-	}
-	nav.layout-nav-wrap > .layout-nav > div.middle-part {
-		text-align: center;
-		width: 50%;
-	}
-	nav.layout-nav-wrap > .layout-nav > div.right-part {
-		text-align: end;
-		width: 25%;
-	}
+	@import './layout.css';
 </style>
 
 
@@ -64,14 +58,20 @@
 		<div class="left-part">&nbsp;</div>
 		<div class="middle-part">&nbsp;</div>
 		<div class="right-part">
-			<a href="/login" class="btn btn-secondary">
+			<!-- <a href="/login" class="btn btn-secondary">
 				<i class="fa-solid fa-right-to-bracket"></i> 로그인
-			</a>
+			</a> -->
+			<button class="btn btn-secondary" on:click={login}>
+				<i class="fa-solid fa-right-to-bracket"></i> 로그인
+			</button>
 		</div>
 	</div>
 	{:else}
 	<div class="main-layout layout-nav">
 		<div class="left-part">
+			<a href="/" class="btn btn-secondary">
+				<i class="fa-solid fa-home"></i>
+			</a>
 			<a href="/mokjang/list" class="btn btn-secondary">
 				<i class="fa-solid fa-layer-group"></i>
 				목장 리스트
@@ -91,6 +91,9 @@
 			<a href="/user-form" class="btn btn-secondary">
 				<i class="fa-solid fa-user"></i> 목자정보
 			</a>
+			<button class="btn btn-secondary" on:click={logout}>
+				<i class="fa-solid fa-right-from-bracket"></i>
+            </button>
 		</div>
 	</div>
 	{/if}
