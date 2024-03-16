@@ -290,6 +290,6 @@
 		</div>
 	</div>
 	<div style="height: calc(100% - 430px);">
-		<textarea cols="30" rows="10" class="form-control h-100" placeholder="목원 메모"></textarea>
+		<textarea cols="30" rows="10" class="form-control h-100" placeholder="목원 메모" bind:value={mokwonInfo.memo}></textarea>
 	</div>
 </div>
