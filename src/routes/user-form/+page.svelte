@@ -21,7 +21,7 @@
 			home_address: userForm.home_address.value,
 			training: userForm.training.value,
 			baptism: userForm.baptism.value,
-			enterance: userForm.enterance.value,
+			entrance: userForm.entrance.value,
 			family: userForm.family.value,
 			partner: userForm.partner.value,
 			email: userForm.email.value,
@@ -121,7 +121,7 @@
 		</div>
 		<div class="d-flex input-group my-2">
 			<label class="input-group-text width-80">입교년도</label>
-			<input type="text" name="enterance" class="form-control">
+			<input type="text" name="entrance" class="form-control">
 		</div>
 		<div class="d-flex input-group my-2">
 			<label class="input-group-text width-80">가족관계</label>

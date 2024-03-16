@@ -24,7 +24,8 @@
 			family: info?.family ?? "",
 			training: info?.training ?? "",
 			baptism: info?.baptism ?? "",
-			enterance: info?.enterance ?? "",
+			entrance: info?.entrance ?? "",
+			memo: info?.memo ?? "",
 		}
 	}
 
@@ -59,7 +60,8 @@
 			family: mokwonInfo.family, 
 			training: mokwonInfo.training, 
 			baptism: mokwonInfo.baptism, 
-			enterance: mokwonInfo.enterance
+			entrance: mokwonInfo.entrance,
+			memo: mokwonInfo.memo,
 		}
 
 		const response = await fetch('/api/mokwon', {
@@ -101,7 +103,8 @@
 			family: mokwonInfo.family, 
 			training: mokwonInfo.training, 
 			baptism: mokwonInfo.baptism, 
-			enterance: mokwonInfo.enterance
+			entrance: mokwonInfo.entrance,
+			memo: mokwonInfo.memo
 		}
 
 		const response = await fetch('/api/mokwon', {
@@ -282,7 +285,7 @@
 			</div>
 			<div class="input-group input-group-sm ms-1">
 				<span class="input-group-text">입교년도</span>
-				<input type="text" class="form-control" placeholder="입교년도" bind:value={mokwonInfo.enterance}>
+				<input type="text" class="form-control" placeholder="입교년도" bind:value={mokwonInfo.entrance}>
 			</div>
 		</div>
 	</div>

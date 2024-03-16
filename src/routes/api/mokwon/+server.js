@@ -85,7 +85,7 @@ async function insertUserInfo(inputData, id) {
 		family: inputData.family,
 		training: inputData.training,
 		baptism: inputData.baptism,
-		enterance: inputData.enterance,
+		entrance: inputData.entrance,
 	}
 
 	const { data, error } = await supabase.from('USER_INFO')
@@ -136,7 +136,7 @@ export async function PUT ({request}) {
 				family: data.family,
 				training: data.training,
 				baptism: data.baptism,
-				enterance: data.enterance,
+				entrance: data.entrance,
 			})
 			.eq("id", data.id);
 

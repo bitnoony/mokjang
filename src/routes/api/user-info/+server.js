@@ -14,7 +14,7 @@ export async function POST({ request }) {
     const home_address = data['home_address'];
     const training = data['training'];
     const baptism = data['baptism'];
-    const enterance = data['enterance'];
+    const entrance = data['entrance'];
     const family = data['family'];
     const partner = data['partner'];
     const email = data['email'];
@@ -36,7 +36,7 @@ export async function POST({ request }) {
             home_address,
             training,
             baptism,
-            enterance,
+            entrance,
             family,
             partner,
             email,
