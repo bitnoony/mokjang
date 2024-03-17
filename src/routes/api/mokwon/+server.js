@@ -2,16 +2,16 @@ import { supabase } from "$lib/supabaseClient";
 import { json } from "@sveltejs/kit";
 
 // 조회
-export async function GET ({ url }) {
-	const selectedMokwonId = url.searchParams?.get('id');
+export async function GET({ url }) {
+	const selectedMokwonId = url.searchParams?.get("id");
 	let result = false;
 
 	// 목원 아이디 유효성 검사 체크
 	if (!selectedMokwonId) {
 		const resp = {
 			isSuccess: result,
-			error_message: "사용자 정보를 가져오는 중, 문제가 발생했습니다."
-		}
+			error_message: "사용자 정보를 가져오는 중, 문제가 발생했습니다.",
+		};
 		return json(resp);
 	}
 
@@ -21,16 +21,16 @@ export async function GET ({ url }) {
 		.select("*, USER_INFO(*)")
 		.eq("id", selectedMokwonId)
 		.maybeSingle();
-	
+
 	result = true;
 	return json({
 		result,
-		mokwonInfo
+		mokwonInfo,
 	});
 }
 
 // 생성
-export async function POST ({request}) {
+export async function POST({ request }) {
 	const data = await request.json();
 	let result = false;
 
@@ -38,8 +38,8 @@ export async function POST ({request}) {
 	if (!data.name || !data.type) {
 		const resp = {
 			isSuccess: result,
-			error_message: "정보가 누락 되었습니다."
-		}
+			error_message: "정보가 누락 되었습니다.",
+		};
 		return json(resp);
 	}
 	// 프로필사진은 나중에
@@ -50,7 +50,7 @@ export async function POST ({request}) {
 		// 유저 추가 (목원)
 		const userData = await insertUser(data);
 		if (userData.length === 0) throw "insert mokwon error";
-		
+
 		const { id } = userData[0];
 
 		// 유저 정보 추가 (목원)
@@ -58,16 +58,18 @@ export async function POST ({request}) {
 
 		// 트랜젝션 종료
 	} catch (err) {
-		console.error(err, '목원 INSERT 중 에러 발생.');
+		console.error(err, "목원 INSERT 중 에러 발생.");
 	}
 
 	result = true;
 	return json({ isSuccess: result });
 }
 
-async function insertUser({name, type, mokja_id}) {
-	const { data, error } = await supabase.from('USERS')
-	.insert([{ name, type, mokja_id },]).select();
+async function insertUser({ name, type, mokja_id }) {
+	const { data, error } = await supabase
+		.from("USERS")
+		.insert([{ name, type, mokja_id }])
+		.select();
 
 	return data;
 }
@@ -87,9 +89,10 @@ async function insertUserInfo(inputData, id) {
 		baptism: inputData.baptism,
 		entrance: inputData.entrance,
 		memo: inputData.memo,
-	}
+	};
 
-	const { data, error } = await supabase.from('USER_INFO')
+	const { data, error } = await supabase
+		.from("USER_INFO")
 		.insert(insertData)
 		.select();
 
@@ -97,7 +100,7 @@ async function insertUserInfo(inputData, id) {
 }
 
 // 수정
-export async function PUT ({request}) {
+export async function PUT({ request }) {
 	const data = await request.json();
 	let result = false;
 
@@ -105,17 +108,18 @@ export async function PUT ({request}) {
 	if (!data.id || !data.name || !data.type) {
 		const resp = {
 			isSuccess: result,
-			error_message: "정보가 누락 되었습니다."
-		}
+			error_message: "정보가 누락 되었습니다.",
+		};
 		return json(resp);
 	}
 
-	try {		
-		const usersResult = await supabase.from('USERS')
+	try {
+		const usersResult = await supabase
+			.from("USERS")
 			.update({
-				name: data.name, 
+				name: data.name,
 				type: data.type,
-				modified_date: new Date().toISOString()
+				modified_date: new Date().toISOString(),
 			})
 			.eq("id", data.id);
 
@@ -125,7 +129,8 @@ export async function PUT ({request}) {
 			throw "users update failed";
 		}
 
-		const userInfoResult = await supabase.from('USER_INFO')
+		const userInfoResult = await supabase
+			.from("USER_INFO")
 			.update({
 				birthday: data.birthday,
 				phone: data.phone,
@@ -146,9 +151,8 @@ export async function PUT ({request}) {
 		if (userInfoResult.error) {
 			throw "users update failed";
 		}
-		
 	} catch (err) {
-		console.error(err, '목원 UPDATE 중 에러 발생.');
+		console.error(err, "목원 UPDATE 중 에러 발생.");
 		return json({ isSuccess: false });
 	}
 
@@ -157,27 +161,28 @@ export async function PUT ({request}) {
 }
 
 // 삭제
-export async function DELETE ({url}) {
-	const targetMokwonId = url.searchParams?.get('id');
+export async function DELETE({ url }) {
+	const targetMokwonId = url.searchParams?.get("id");
 	let result = false;
 
 	// data 안에 name과 type이 있는가? validation
 	if (!targetMokwonId) {
 		const resp = {
 			isSuccess: result,
-			error_message: "정보가 누락 되었습니다."
-		}
+			error_message: "정보가 누락 되었습니다.",
+		};
 		return json(resp);
 	}
 
 	try {
-		const { data, error } = await supabase.from('USERS')
-			.update({deleted_date: new Date().toISOString()})
+		const { data, error } = await supabase
+			.from("USERS")
+			.update({ deleted_date: new Date().toISOString() })
 			.eq("id", targetMokwonId);
 	} catch (err) {
-		console.error(err, '목원 DELETE 중 에러 발생.');
+		console.error(err, "목원 DELETE 중 에러 발생.");
 	}
-	
+
 	result = true;
 	return json({ isSuccess: result });
 }

@@ -17,20 +17,21 @@ export async function POST({ request }) {
 	// request로부터 데이터 받아옴.
 	const requestData = await request.json();
 	console.log("/api/users에서 찍은 데이터 : ", requestData);
-	const {id, name, image} = requestData;
+	const { id, name, image } = requestData;
 
 	// DB에 데이터 insert
 	try {
-		let insertData = { id: id, name: name, profile_image: image, type: '목자' };
-		const { data, error } = await supabase.from('USERS')
-		.insert([insertData])
-		.select();
+		let insertData = { id: id, name: name, profile_image: image, type: "목자" };
+		const { data, error } = await supabase
+			.from("USERS")
+			.insert([insertData])
+			.select();
 
 		result = true;
 	} catch (err) {
-		console.error(err, '회원 INSERT 중 에러 발생.');
+		console.error(err, "회원 INSERT 중 에러 발생.");
 	}
-	
+
 	// 성공여부 반환
 	return new Response(result);
 }

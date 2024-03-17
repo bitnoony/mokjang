@@ -1,21 +1,20 @@
-
 .list-container {
-    background-color: white;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-    padding: 0.5rem;
-    height: 100%;
+	background-color: white;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	padding: 0.5rem;
+	height: 100%;
 }
 
 .add-btn {
-    margin-bottom: 9px;
+	margin-bottom: 9px;
 }
 
 .list-container > .list-wrap {
-    height: 100%;
-    overflow: hidden auto;
+	height: 100%;
+	overflow: hidden auto;
 }
 
 .list-container > .list-wrap.meeting-list-wrap {
-    height: calc(100% - 40px);
+	height: calc(100% - 40px);
 }

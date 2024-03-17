@@ -1,10 +1,23 @@
 <script>
-	import MeetingList from './MeetingList.svelte';
-	import MokwonList from './MokwonList.svelte';
+	import MeetingList from "./MeetingList.svelte";
+	import MokwonList from "./MokwonList.svelte";
 
 	export let data;
 	const { mokjang, mokjaId } = data;
 </script>
+
+<svelte:head>
+	<title>{mokjang.mokjang_name} :: 목장 MOKJANG</title>
+</svelte:head>
+
+<section class="mokjang-container">
+	<article class="meeting-article">
+		<MeetingList {mokjang} {mokjaId} />
+	</article>
+	<article class="mokwon-article">
+		<MokwonList {mokjang} {mokjaId} />
+	</article>
+</section>
 
 <style>
 	section.mokjang-container {
@@ -27,12 +40,3 @@
 		width: 40%;
 	}
 </style>
-
-<section class="mokjang-container">
-	<article class="meeting-article">
-		<MeetingList mokjang={mokjang} mokjaId={mokjaId} />
-	</article>
-	<article class="mokwon-article">
-		<MokwonList mokjang={mokjang} mokjaId={mokjaId} />
-	</article>
-</section>

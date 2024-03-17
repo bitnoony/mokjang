@@ -1,98 +1,98 @@
 .meeting-section {
-    height: calc(100vh - 60px);
-    display: flex;
-    padding: 1rem 0.5rem;
-    justify-content: space-between;
+	height: calc(100vh - 60px);
+	display: flex;
+	padding: 1rem 0.5rem;
+	justify-content: space-between;
 }
 
 .meeting-section > .meeting-container {
-    height: 100%;
-    width: 50%;
-    margin: 0 0.5rem;
+	height: 100%;
+	width: 50%;
+	margin: 0 0.5rem;
 }
 
 .meeting-info-wrap {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 30%;
-    padding-bottom: 1rem;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	height: 30%;
+	padding-bottom: 1rem;
 }
 
 .meeting-info-group {
-    width: 70%;
-    height: 100%;
-    padding-right: 1rem;
+	width: 70%;
+	height: 100%;
+	padding-right: 1rem;
 }
 
 .meeting-name {
-    width: 100%;
+	width: 100%;
 }
 
 .meeting-info {
-    width: 100%;
-    height: calc(100% - 46px);
-    margin-top: 0.5rem;
+	width: 100%;
+	height: calc(100% - 46px);
+	margin-top: 0.5rem;
 }
 
 .meeting-list-group {
-    width: 30%;
-    height: 100%;
+	width: 30%;
+	height: 100%;
 }
 
 .meeting-list-group > .mokwon-list {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 .meeting-count {
-    height: 38px;
-    padding: 6px 0;
+	height: 38px;
+	padding: 6px 0;
 }
 
 .meeting-list {
-    height: calc(100% - 46px);
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    overflow-y: auto;
+	height: calc(100% - 46px);
+	margin-top: 0.5rem;
+	padding: 0.5rem;
+	overflow-y: auto;
 }
 
 .memo-info-wrap {
-    width: 100%;
-    height: 70%;
-    overflow: hidden auto;
+	width: 100%;
+	height: 70%;
+	overflow: hidden auto;
 }
 
 .meeting-section > .mokwon-container {
-    height: 100%;
-    width: 50%;
-    padding: 0 0.5rem;
+	height: 100%;
+	width: 50%;
+	padding: 0 0.5rem;
 }
 
 .meeting-section > .mokwon-container > .mokwon-info {
-    width: 100%;
-    height: calc(70% - 1rem);
-    background-color: white;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-    padding: 0.5rem;
-    overflow-y: auto;
+	width: 100%;
+	height: calc(70% - 1rem);
+	background-color: white;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+	padding: 0.5rem;
+	overflow-y: auto;
 }
 
 .meeting-section .meeting-comment {
-    height: calc(100% - 92px);
+	height: calc(100% - 92px);
 }
 
 .mokwon-tab {
-    color: black;
-    width: 50%;
+	color: black;
+	width: 50%;
 }
 
 .tab-content {
-    padding: 0.5rem;
-    background-color: white;
-    border: 1px solid lightgray;
-    border-radius: 0 0 10px 10px;
-    border-top: 0;
-    height: calc(100% - 42px);
+	padding: 0.5rem;
+	background-color: white;
+	border: 1px solid lightgray;
+	border-radius: 0 0 10px 10px;
+	border-top: 0;
+	height: calc(100% - 42px);
 }

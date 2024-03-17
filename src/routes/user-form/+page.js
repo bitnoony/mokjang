@@ -1,10 +1,9 @@
-import { supabase } from "$lib/supabaseClient";
+import { goto } from "$app/navigation";
+import { checkUser } from "$lib/supabaseClient";
 export const ssr = false;
 
-export async function load () {
-	const {
-		data: { user },
-	} = await supabase.auth.getUser();
+export async function load() {
+	const user = await checkUser();
 
 	const userId = user?.id;
 	const userName = user?.identities[0].identity_data.full_name;
@@ -14,8 +13,8 @@ export async function load () {
 		id: userId,
 		name: userName,
 		image: picture,
-		email: email
-	}
+		email: email,
+	};
 
 	return data;
 }

@@ -1,12 +1,13 @@
 <script>
-	import MokwonInfo from './mokwonInfo.svelte';
-	import MokwonHistoryList from './MokwonHistoryList.svelte';
-	import {getMokwonList} from './mokwon.js';
+	import imgSheep3 from "$lib/assets/sheep_three.png";
+	import MokwonInfo from "./mokwonInfo.svelte";
+	import MokwonHistoryList from "./MokwonHistoryList.svelte";
+	import { getMokwonList } from "./mokwon.js";
 
 	export let data;
 	let mokwonInfoComponent;
 	let mokwonHistoryListComponent;
-	let {mokwonList, mokja_id} = data;
+	let { mokwonList, mokja_id } = data;
 
 	async function getMokwonInfo(mokwonId) {
 		mokwonInfoComponent.getMokwonInfo(mokwonId);
@@ -22,6 +23,63 @@
 		mokwonInfoComponent.getMokwonInfo();
 	}
 </script>
+
+<svelte:head>
+	<title>목원관리 :: 목장 MOKJANG</title>
+</svelte:head>
+
+<div class="mokwon-container">
+	<div class="mokwon-container-divider list">
+		<div class="mokwon-divider-body">
+			<section class="mokwon-list-section">
+				<div class="mb-2">
+					<button class="btn btn-sm btn-primary" on:click={addMokwon}>
+						<i class="fa-solid fa-plus"></i> 추가
+					</button>
+				</div>
+				<div class="overflow-y-auto h-100 list-group common-scroll">
+					{#if mokwonList.length === 0}
+						<div class="my-5 d-flex-center flex-column">
+							<img src="{imgSheep3}" alt="add mokwon">
+							<h4 class="my-3 fw-bold">목원을 추가해 보아요.</h4>
+						</div>
+					{:else}
+					{#each mokwonList as mokwon}
+						<a
+							href="#"
+							class="mokwon-item list-group-item list-group-item-action list-item"
+							on:click|preventDefault={e => {
+								getMokwonInfo(mokwon.id);
+							}}
+						>
+							<div>{mokwon.name}</div>
+							<div>{mokwon.type}</div>
+							<!-- <div>{mokwon.USER_INFO?.birthday ?? ""}</div>
+							<div>{mokwon.USER_INFO?.phone ?? ""}</div> -->
+						</a>
+					{/each}
+					{/if}
+				</div>
+			</section>
+		</div>
+	</div>
+	<div class="mokwon-container-divider detail">
+		<div class="mokwon-divider-body">
+			<section>
+				<MokwonInfo
+					{mokja_id}
+					bind:this={mokwonInfoComponent}
+					on:message={refreshMokwonList}
+				/>
+			</section>
+		</div>
+	</div>
+	<div class="mokwon-container-divider history">
+		<div class="mokwon-divider-body">
+			<MokwonHistoryList bind:this={mokwonHistoryListComponent} />
+		</div>
+	</div>
+</div>
 
 <style>
 	.mokwon-container {
@@ -79,45 +137,3 @@
 		background-color: #c9e2ee;
 	}
 </style>
-
-<div class="mokwon-container">
-	<div class="mokwon-container-divider list">
-		<div class="mokwon-divider-body">
-			<section class="mokwon-list-section">
-				<div class="mb-2">
-					<button class="btn btn-sm btn-success" on:click={addMokwon}>추가</button>
-				</div>
-				<div class="overflow-y-auto h-100 list-group common-scroll">
-					{#each mokwonList as mokwon}
-						<a href="#" class="mokwon-item list-group-item list-group-item-action list-item" 
-							on:click|preventDefault={e => {getMokwonInfo(mokwon.id)}}
-						>
-							<div>{mokwon.name}</div>
-							<div>{mokwon.type}</div>
-							<!-- <div>{mokwon.USER_INFO?.birthday ?? ""}</div>
-							<div>{mokwon.USER_INFO?.phone ?? ""}</div> -->
-						</a>
-					{/each}
-				</div>
-			</section>
-		</div>
-	</div>
-	<div class="mokwon-container-divider detail">
-		<div class="mokwon-divider-body">
-			<section>
-				<MokwonInfo 
-				mokja_id={mokja_id}
-				bind:this={mokwonInfoComponent}
-				on:message={refreshMokwonList}
-				/>
-			</section>
-		</div>
-	</div>
-	<div class="mokwon-container-divider history">
-		<div class="mokwon-divider-body">
-			<MokwonHistoryList 
-			bind:this={mokwonHistoryListComponent}
-			/>
-		</div>
-	</div>
-</div>

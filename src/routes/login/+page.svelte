@@ -5,16 +5,16 @@
 
 	async function googleLogin() {
 		const { data, error } = await supabase.auth.signInWithOAuth({
-			provider: 'google',
+			provider: "google",
 			options: {
 				queryParams: {
-					access_type: 'offline',
-					prompt: 'consent',
+					access_type: "offline",
+					prompt: "consent",
 				},
 				// redirectTo: PUBLIC_BASE_URL,
 				// skipBrowserRedirect: false,
 			},
-		})
+		});
 	}
 </script>
 

@@ -9,15 +9,15 @@ import { json } from "@sveltejs/kit";
  */
 export async function POST({ request }) {
 	const requestData = await request.json();
-	const {mokjang_name, user_id, current_use} = requestData;
+	const { mokjang_name, user_id, current_use } = requestData;
 	let result = false;
 
 	// data 유효성 검사
 	if (!mokjang_name || !user_id) {
 		const resp = {
 			isSuccess: result,
-			error_message: "정보가 누락 되었습니다."
-		}
+			error_message: "정보가 누락 되었습니다.",
+		};
 		return json(resp);
 	}
 
@@ -25,17 +25,17 @@ export async function POST({ request }) {
 	try {
 		await disableCurrentUse(current_use, user_id);
 
-		await supabase.from('MOKJANG').insert(requestData);
+		await supabase.from("MOKJANG").insert(requestData);
 	} catch (err) {
-		const errorMsg = '목장 생성 중 에러가 발생했습니다.';
+		const errorMsg = "목장 생성 중 에러가 발생했습니다.";
 		console.error(err, errorMsg);
 		const resp = {
 			isSuccess: result,
-			error_message: errorMsg
-		}
+			error_message: errorMsg,
+		};
 		return json(resp);
 	}
-	
+
 	result = true;
 	return json({ isSuccess: result });
 }
@@ -47,15 +47,15 @@ export async function POST({ request }) {
  */
 export async function PUT({ request }) {
 	const requestData = await request.json();
-	const {idx, mokjang_name, area, tag, user_id, current_use} = requestData;
+	const { idx, mokjang_name, area, tag, user_id, current_use } = requestData;
 	let result = false;
 
 	// data 유효성 검사
 	if (!idx || !mokjang_name || !user_id) {
 		const resp = {
 			isSuccess: result,
-			error_message: "정보가 누락 되었습니다."
-		}
+			error_message: "정보가 누락 되었습니다.",
+		};
 		return json(resp);
 	}
 
@@ -63,19 +63,25 @@ export async function PUT({ request }) {
 	try {
 		await disableCurrentUse(current_use, user_id);
 
-		await supabase.from('MOKJANG').update({
-			mokjang_name, area, tag, current_use
-		}).eq('idx', idx);
+		await supabase
+			.from("MOKJANG")
+			.update({
+				mokjang_name,
+				area,
+				tag,
+				current_use,
+			})
+			.eq("idx", idx);
 	} catch (err) {
-		const errorMsg = '목장 수정 중 에러가 발생했습니다.';
+		const errorMsg = "목장 수정 중 에러가 발생했습니다.";
 		console.error(err, errorMsg);
 		const resp = {
 			isSuccess: result,
-			error_message: errorMsg
-		}
+			error_message: errorMsg,
+		};
 		return json(resp);
 	}
-		
+
 	result = true;
 	return json({ isSuccess: result });
 }
@@ -87,30 +93,32 @@ export async function PUT({ request }) {
  */
 export async function DELETE({ request }) {
 	const requestData = await request.json();
-	const {idx, user_id} = requestData;
+	const { idx, user_id } = requestData;
 	let result = false;
 
 	// data 유효성 검사
 	if (!idx || !user_id) {
 		const resp = {
 			isSuccess: result,
-			error_message: "정보가 누락 되었습니다."
-		}
+			error_message: "정보가 누락 되었습니다.",
+		};
 		return json(resp);
 	}
 
 	// supabase 데이터 저장.
 	try {
-		await supabase.from('MOKJANG').delete()
-			.eq('idx', idx)
-			.eq('user_id', user_id);
+		await supabase
+			.from("MOKJANG")
+			.delete()
+			.eq("idx", idx)
+			.eq("user_id", user_id);
 	} catch (err) {
-		const errorMsg = '목장 삭제 중 에러가 발생했습니다.';
+		const errorMsg = "목장 삭제 중 에러가 발생했습니다.";
 		console.error(err, errorMsg);
 		const resp = {
 			isSuccess: result,
-			error_message: errorMsg
-		}
+			error_message: errorMsg,
+		};
 		return json(resp);
 	}
 
@@ -124,9 +132,13 @@ export async function DELETE({ request }) {
 async function disableCurrentUse(currentUse, userId) {
 	console.log(currentUse, userId);
 	if (!currentUse) return;
-	const { data } = await supabase.from('MOKJANG').update({
-		current_use: false
-	}).eq('user_id', userId).eq('current_use', true);
+	const { data } = await supabase
+		.from("MOKJANG")
+		.update({
+			current_use: false,
+		})
+		.eq("user_id", userId)
+		.eq("current_use", true);
 
 	console.log("current_use 업데이트!!!!", data);
 }
