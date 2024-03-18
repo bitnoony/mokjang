@@ -51,8 +51,10 @@
 		<div class="homepage-layout layout-nav">
 			<div class="left-part">
 				<div class="title-wrap">
-					<img src={logo} alt="logo" />
-					<h3 class="m-0 fw-bold">MOKJANG</h3>
+					<a href="/">
+						<img src={logo} alt="logo" />
+						<h3 class="m-0 fw-bold">MOKJANG</h3>
+					</a>
 				</div>
 			</div>
 			<div class="middle-part">&nbsp;</div>
