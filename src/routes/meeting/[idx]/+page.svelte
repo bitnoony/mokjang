@@ -127,9 +127,6 @@
 					</div>
 					<div class="w-50 ps-1 d-flex">
 						<div>목원 수: {participantList.length}</div>
-						<button class="btn btn-danger">
-							<i class="fa-solid fa-trash"></i> 삭제
-						</button>
 					</div>
 				</div>
 				<div class="meeting-info">
