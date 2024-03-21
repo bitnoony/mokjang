@@ -74,15 +74,11 @@
 					<i class="fa-solid fa-layer-group"></i>
 					목장 리스트
 				</a>
-				<button
-					class="btn btn-outline-secondary"
-					on:click={() => {
-						history.back();
-					}}
-				>
+				<a href="/summary"
+					class="btn btn-outline-secondary">
 					<i class="fa-solid fa-arrow-left"></i>
-					뒤로가기
-				</button>
+					주일설교원문
+			    </a>
 			</div>
 			<div class="middle-part">
 				<span class="fw-bold fs-3">목장</span>
