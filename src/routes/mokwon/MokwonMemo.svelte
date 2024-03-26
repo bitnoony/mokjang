@@ -71,14 +71,18 @@
 </script>
 
 <div class="list-group-item mokwon-memo-wrap">
-	<input type="date" value="{memo_date}" class="form-control me-1" 
-		on:change={memoUpdate}
-	>
+	<div class="memo-date-wrap">
+		<span>메모 날짜 : </span>
+		<input type="date" value="{memo_date}" 
+			class="form-control me-1" 
+			on:change={memoUpdate}
+		>
+	</div>
 	<div class="ms-1 d-flex align-items-center w-100">
 		<textarea placeholder="메모를 입력하세요" class="form-control" rows="1"
 			bind:this={areaMemo} on:input={adjustHeight} on:change={memoUpdate}
 		>{content}</textarea>
-		<button class="ms-1 btn btn-sm btn-danger" title="삭제" on:click={memoDelete}>
+		<button class="ms-1 btn btn-sm btn-outline-danger" title="삭제" on:click={memoDelete}>
 			<i class="fa-solid fa-xmark"></i>
 		</button>
 	</div>
@@ -87,16 +91,32 @@
 
 <style>
 	.mokwon-memo-wrap {
-		display: flex;
-		align-items: flex-start;
+		background-color: #FEF9E7;
 	}
 
-	.mokwon-memo-wrap > input[type='date'] {
-		width: 180px;
+	.mokwon-memo-wrap > .memo-date-wrap {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		font-weight: bold;
+		margin-bottom: 0.3rem;
+	}
+
+	.mokwon-memo-wrap > .memo-date-wrap > input[type='date'] {
+		width: 130px;
 		border: 0;
+		background-color: transparent;
+		font-weight: bold;
+		padding: 0 6px;
 	}
 
 	.mokwon-memo-wrap > div > textarea {
 		resize: none;
+	}
+	.mokwon-memo-wrap > div > button {
+		width: 44px;
+		height: 38px;
+		margin: 0 3px;
+		font-size: large;
 	}
 </style>

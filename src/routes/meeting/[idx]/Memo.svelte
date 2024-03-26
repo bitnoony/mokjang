@@ -12,9 +12,7 @@
 	let areaMemo;
 	let areaComment;
 	let isSave = false;
-	onMount(e => {
-		adjustHeight();
-	});
+	onMount(adjustHeight);
 
 	function keypressEvent(e) {
 		if (e.key === "Enter" && e.ctrlKey) {
