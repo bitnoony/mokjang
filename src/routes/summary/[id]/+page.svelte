@@ -2,7 +2,8 @@
   import Editor from '@tinymce/tinymce-svelte';
 	export let data;
   const recordData = data.record[0];
-  const recordContent = data.record[0].content;
+  const recordContent = data.record[0].content.replace(/\n/g, "<br>");
+
 
 </script>
 
@@ -18,7 +19,7 @@
            <hr>
            { recordData.title}
            <hr>
-           { recordContent}
+           {@html recordContent}
            
           </div>
 
