@@ -1,24 +1,23 @@
 <script>
     	import { supabase } from "$lib/supabaseClient";
-		// import { goto } from "$app/navigation";
+		import { goto } from "$app/navigation";
         let sermon_date,title,content,youtube_link;
 
         async function saveRecord(){
 			
-			const data = {
+			const insertData = {
 			sermon_date,
 		        title,
 		        content,
 		        youtube_link
 		    };
 
-			const response = await fetch("/api/summary", {
-			method: "POST",
-			body: JSON.stringify(data),
-			    headers: {
-				"content-type": "application/json",
-			},
-		});
+			const { data, error } = await supabase
+		     .from("RECORD")
+		     .insert(insertData)
+		     .select();
+
+	      goto("/summary");
 
          }   
 
