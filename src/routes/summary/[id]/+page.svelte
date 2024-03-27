@@ -1,8 +1,11 @@
 <script>
-    import Editor from '@tinymce/tinymce-svelte';
+  import Editor from '@tinymce/tinymce-svelte';
 	export let data;
-	const { id } = data;
+  const recordData = data.record[0];
+  const recordContent = data.record[0].content;
+
 </script>
+
 <div style="height:100%; padding:10px">
     <div style="width: 50%; float:left; height:100%">
         <div class="card">
@@ -11,12 +14,12 @@
             </div>
           </div>
           <div style="background-color:white; padding:10px; height:400px">
-            dfssdfsdfs
-            dfssdfsdfssd
-            <br><br><br>
-            dfssdfsdfssddsf
-            sf<br><br><br>
-dsfdssdf
+           { recordData.sermon_date}
+           <hr>
+           { recordData.title}
+           <hr>
+           { recordContent}
+           
           </div>
 
         

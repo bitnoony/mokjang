@@ -1,6 +1,12 @@
+import { supabase, checkUser } from "$lib/supabaseClient";
 
-export function load({ params }) {
+export async function load({ params }) {
 	const id = params.id;
 
-	return { id };
+	let { data: RECORD, error } = await supabase
+	.from('RECORD')
+	.select("*")
+	.eq('id', id);
+
+	return { record: RECORD };
 }
