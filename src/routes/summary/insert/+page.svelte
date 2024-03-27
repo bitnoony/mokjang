@@ -1,22 +1,26 @@
 <script>
     	import { supabase } from "$lib/supabaseClient";
-        import { createEventDispatcher } from "svelte";
-		import { goto } from "$app/navigation";
-
-	     const dispatch = createEventDispatcher();
-
-        let sermon_date, title, youtube_link, content;
+		// import { goto } from "$app/navigation";
+        let sermon_date,title,content,youtube_link;
 
         async function saveRecord(){
- 
-        const { data, error } = await supabase
-            .from("RECORD")
-            .insert([{ sermon_date, title, content, youtube_link }])
-            .select();
-    
-        // return data;
-        goto("/summary");
-         }
+			
+			const data = {
+			sermon_date,
+		        title,
+		        content,
+		        youtube_link
+		    };
+
+			const response = await fetch("/api/summary", {
+			method: "POST",
+			body: JSON.stringify(data),
+			    headers: {
+				"content-type": "application/json",
+			},
+		});
+
+         }   
 
 </script>
 
