@@ -6,9 +6,7 @@
 	import "@fortawesome/fontawesome-free/css/all.min.css";
 	import { supabase, getUser } from "$lib/supabaseClient";
 	let isHomeLayout = true;
-	let isAdmin = false;
    
-
 	init();
 
 	async function init() {
@@ -18,12 +16,6 @@
 			isHomeLayout = false;
 		} else {
 			isHomeLayout = true;
-		}
-        
-		if ( user.id == "9cfdad21-7291-4098-8b91-f737d6994766") {
-		    isAdmin = true;
-		} else {
-			isAdmin = false;
 		}
 
 	}
@@ -88,13 +80,11 @@
 					<i class="fa-regular fa-note-sticky"></i>
 					주일설교녹취
 			    </a>
-				{#if isAdmin}
-				   <a href="/summary/insert"
-				    class="btn btn-primary">
-				    <i class="fa-regular fa-note-sticky"></i>
-				     녹취입력
-		      	</a>
-				{/if}
+				<a href="/summary/insert"
+					class="btn btn-primary">
+					<i class="fa-regular fa-note-sticky"></i>
+					녹취쓰기
+			    </a>
 			</div>
 			<div class="middle-part">
 				<span class="fw-bold fs-3">목장</span>
