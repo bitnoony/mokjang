@@ -19,13 +19,12 @@
 		} else {
 			isHomeLayout = true;
 		}
-        
-		if ( user.id == "9cfdad21-7291-4098-8b91-f737d6994766") {
-		    isAdmin = true;
+	
+		if (user?.id === "9cfdad21-7291-4098-8b91-f737d6994766") {
+			isAdmin = true;
 		} else {
 			isAdmin = false;
 		}
-
 	}
 
 	async function login() {
