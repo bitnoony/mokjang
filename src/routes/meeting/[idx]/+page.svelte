@@ -1,18 +1,37 @@
 <script>
 	import { supabase, getUser } from "$lib/supabaseClient";
 	import MokwonInfo from "../../mokwon/mokwonInfo.svelte";
+	import MokwonHistoryList from "../../mokwon/MokwonHistoryList.svelte";
 	import Memo from "./Memo.svelte";
 	import { getMokwonListInMokjang } from "../../mokwon/mokwon.js";
 	export let data;
 	let { meeting, userId, mokjangIdx } = data;
 	let { idx: meetingIdx, meeting_title, meeting_date, place, memo } = meeting;
 	let mokwonInfoComponent;
+	let mokwonHistoryListComponent;
 	let mokwonList = [];
 	let participantList = [];
 	$: mokwonList;
 	$: participantList;
 
-	getList();
+	init();
+	
+	async function init() {
+		await getList();
+		await selectMokja();
+	}
+
+	// 초기 목자 선택
+	async function selectMokja() {
+		const user = await getUser();
+		if (mokwonList.length > 0 && user) {
+			const filteredList = mokwonList.filter(u => u.id === user.id);
+			if (filteredList.length === 0) return;
+
+			const me = filteredList[0];
+			selectParticipant(null, me.id);
+		}
+	}
 
 	async function getList() {
 		const data = await getMokwonListInMokjang(userId, mokjangIdx);
@@ -107,6 +126,11 @@
 			console.error(error);
 		}
 	}
+
+	function selectParticipant(e, mokwonId) {
+		mokwonInfoComponent.getMokwonInfo(mokwonId);
+		mokwonHistoryListComponent.getMokwonHistory(mokwonId);
+	}
 </script>
 
 <section class="meeting-section">
@@ -160,7 +184,7 @@
 						<textarea
 							name="memo"
 							cols="30"
-							rows="5"
+							rows="2"
 							class="form-control meeting-comment"
 							placeholder="코멘트를 입력해 주세요."
 							on:change={updateMeeting}
@@ -176,9 +200,7 @@
 							<button
 								class="py-1 px-3 list-group-item list-group-item-action list-item d-flex align-items-center"
 								aria-current="true"
-								on:click={e => {
-									mokwonInfoComponent.getMokwonInfo(mokwon.id);
-								}}
+								on:click={e => selectParticipant(e, mokwon.id)}
 							>
 								<div class="d-flex gap-2 w-100 justify-content-between">
 									<div>
@@ -216,8 +238,15 @@
 		</div>
 		<div class="memo-info-wrap common-scroll list-group">
 			<!-- 이름순 -->
-			{#each participantList as { groupIdx, name, profile_image, memo, comment }}
-				<Memo {groupIdx} {name} {memo} {comment} {profile_image} />
+			{#each participantList as { user_id, groupIdx, name, profile_image, memo, comment }}
+				<Memo 
+					{groupIdx} 
+					{name} 
+					{memo} 
+					{comment} 
+					{profile_image} 
+					on:message={() => selectParticipant(null, user_id)}
+				/>
 			{/each}
 		</div>
 	</div>
@@ -256,13 +285,13 @@
 		</nav>
 		<div class="tab-content" id="nav-tabContent">
 			<div
-				class="tab-pane fade show active"
+				class="h-100 tab-pane fade show active"
 				id="tabMokwonInfoWrap"
 				role="tabpanel"
 				aria-labelledby="nav-home-tab"
 				tabindex="0"
 			>
-				<div class="mokwon-info common-scroll">
+				<div class="mokwon-info h-100">
 					<MokwonInfo
 						mokja_id={userId}
 						bind:this={mokwonInfoComponent}
@@ -271,13 +300,15 @@
 				</div>
 			</div>
 			<div
-				class="tab-pane fade"
+				class="h-100 tab-pane fade"
 				id="tabMokwonHistoryWrap"
 				role="tabpanel"
 				aria-labelledby="nav-profile-tab"
 				tabindex="0"
 			>
-				<div class="common-scroll">히스토리</div>
+				<div class="h-100">
+					<MokwonHistoryList bind:this={mokwonHistoryListComponent} />
+				</div>
 			</div>
 		</div>
 	</div>

@@ -90,7 +90,7 @@
 
 		if (isSuccess) {
 			dispatch("message");
-			mokwonInfo = setMokwonInfo();
+			mokwonInfo = getMokwonInfo(mokwonInfo.id);
 			alert("목원이 추가 되었습니다.");
 		}
 	}
@@ -133,7 +133,7 @@
 
 		if (isSuccess) {
 			dispatch("message");
-			mokwonInfo = setMokwonInfo();
+			mokwonInfo = getMokwonInfo(mokwonInfo.id);
 			alert("수정 되었습니다.");
 		}
 	}
@@ -151,7 +151,7 @@
 
 		if (isSuccess) {
 			dispatch("message");
-			mokwonInfo = setMokwonInfo();
+			mokwonInfo = getMokwonInfo();
 			alert("삭제 되었습니다.");
 		}
 	}

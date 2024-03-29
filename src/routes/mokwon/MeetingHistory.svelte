@@ -61,7 +61,7 @@
         background-color: #EBF5FB;
     }
 
-    .mokwon-meeting-wrap > .meeting-info-wrap {
+    .mokwon-meeting-wrap > .meeting-data-wrap {
         display: flex;
         justify-content: space-between;
         font-weight: bold;
@@ -105,7 +105,7 @@
 </style>
 
 <div class="list-group-item mokwon-meeting-wrap">
-    <div class="meeting-info-wrap">
+    <div class="meeting-data-wrap">
         <span class="me-3"><b>모임 날짜</b> : {meeting_date}</span>
         <span class="me-3"><b>모임 이름</b> : {meeting_title}</span>
         <span class="me-3"><b>목장 이름</b> : &#91;{mokjang_name}&#93;</span>

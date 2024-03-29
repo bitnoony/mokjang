@@ -25,8 +25,6 @@
 			return new Date(b.sort_date) - new Date(a.sort_date);
 		});
 
-		console.log(mergeHistoryList);
-
 		mokwonId = inputMokwonId;
 	}
 

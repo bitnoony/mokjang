@@ -1,6 +1,11 @@
 <script>
 	import userImg from "$lib/assets/user.svg";
+	import { toasts }  from "svelte-toasts";
+	import Toast from "$lib/components/toast/toast.svelte";
 	import { onMount } from "svelte";
+	import { createEventDispatcher } from "svelte";
+	const dispatch = createEventDispatcher();
+
 	export let groupIdx;
 	export let name;
 	export let memo;
@@ -11,7 +16,6 @@
 	let item;
 	let areaMemo;
 	let areaComment;
-	let isSave = false;
 	onMount(adjustHeight);
 
 	function keypressEvent(e) {
@@ -21,11 +25,7 @@
 		}
 	}
 
-	function blur() {
-		save();
-	}
-
-	async function save() {
+	async function save(e) {
 		try {
 			await fetch("/api/meeting/memo", {
 				method: "PATCH",
@@ -36,10 +36,13 @@
 				}),
 				headers: { "content-type": "application/json" },
 			});
-			isSave = true;
-			setTimeout(() => {
-				isSave = false;
-			}, 1000);
+
+			const type = e.target.getAttribute("data-type");
+			const toast = toasts.add({ 
+				type: 'success', 
+				description: `'${name}'의 '${type}'가 수정 되었습니다.`,
+			});
+
 		} catch (e) {
 			alert("저장에 실패했습니다.");
 		}
@@ -55,12 +58,15 @@
 		areaMemo.style.height = maxHeight + "px";
 		areaComment.style.height = maxHeight + "px";
 	}
+
+	function nameClickEvent() {
+		dispatch("message");
+	}
 </script>
 
 <div
 	bind:this={item}
 	class="memo-item list-group-item list-group-item-action"
-	class:success={isSave}
 	data-idx={groupIdx}
 >
 	<div>
@@ -73,15 +79,19 @@
 		/>
 	</div>
 	<div class="participant-name">
-		{name}
+		<a href="#" class="link-dark link-offset-2 link-underline-opacity-0 link-underline-opacity-100-hover"
+			on:click={nameClickEvent}>
+			{name}
+		</a>
 	</div>
 	<div class="participant-memo">
 		<textarea
 			class="editable-area form-control"
+			data-type="메모"
 			cols="30"
 			placeholder="메모"
 			bind:this={areaMemo}
-			on:blur={blur}
+			on:change={save}
 			on:keydown={keypressEvent}
 			on:input={adjustHeight}
 			bind:value={memo}
@@ -90,16 +100,18 @@
 	<div class="participant-comment">
 		<textarea
 			class="editable-area form-control"
+			data-type="코멘트"
 			cols="30"
 			placeholder="코멘트"
 			bind:this={areaComment}
-			on:blur={blur}
+			on:change={save}
 			on:keydown={keypressEvent}
 			on:input={adjustHeight}
 			bind:value={comment}
 		/>
 	</div>
 </div>
+<Toast />
 
 <style>
 	@keyframes background-change {
