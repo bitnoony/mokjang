@@ -52,7 +52,7 @@
 						<img src="{imgBitnoony}" alt="bitnoony" width="250" height="250">
 					</div>
 				</div>
-			</div>
+			</div> 
 			<div class="col-lg-6">
 				<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative bg-white">
 					<div class="col p-4 d-flex flex-column position-static">
