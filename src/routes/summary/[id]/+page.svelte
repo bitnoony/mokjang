@@ -1,5 +1,4 @@
 <script>
-  import Editor from '@tinymce/tinymce-svelte';
 	export let data;
   const recordData = data.record[0];
   const recordContent = data.record[0].content.replace(/\n/g, "<br>");
