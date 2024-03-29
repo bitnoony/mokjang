@@ -32,8 +32,6 @@
             </div>
           </div>
         
-        <Editor
-          apiKey="2xt1jhdtpy8fz6m2xzedoqa70dyf31mw3jh6p6ekb3xf4jg5"
-        />
+       <textarea style="width:100%;"></textarea>
     </div>
 </div>
