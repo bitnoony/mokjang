@@ -1,6 +1,4 @@
 import { supabase } from "$lib/supabaseClient";
-import { json } from "@sveltejs/kit";
-import { loadConfigFromFile } from "vite";
 
 export async function POST({ request }) {
 	// formData 사용법
