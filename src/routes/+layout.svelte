@@ -39,7 +39,7 @@
 				// skipBrowserRedirect: false,
 			},
 		});
-		console.log(data, error);
+		// console.log(data, error);
 	}
 
 	async function logout() {

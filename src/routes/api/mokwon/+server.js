@@ -123,8 +123,6 @@ export async function PUT({ request }) {
 			})
 			.eq("id", data.id);
 
-		console.log("usersResult", usersResult);
-
 		if (usersResult.error) {
 			throw "users update failed";
 		}
@@ -147,7 +145,6 @@ export async function PUT({ request }) {
 			})
 			.eq("id", data.id);
 
-		console.log("userInfoResult", userInfoResult);
 		if (userInfoResult.error) {
 			throw "users update failed";
 		}

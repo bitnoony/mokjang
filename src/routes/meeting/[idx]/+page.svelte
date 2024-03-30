@@ -119,7 +119,6 @@
 			.update({ [columnName]: value, modified_date: new Date().toISOString() })
 			.eq("idx", meetingIdx)
 			.select();
-		console.log(data);
 
 		if (error) {
 			alert("수정중 문제가 발생했습니다.");

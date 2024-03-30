@@ -10,7 +10,7 @@ import { json } from "@sveltejs/kit";
 export async function POST({ request }) {
 	const requestData = await request.json();
 	const { mokjang_name, user_id, current_use } = requestData;
-	let result = false; console.log(user_id);
+	let result = false;
 
 	// data 유효성 검사
 	if (!mokjang_name || !user_id) {
@@ -130,7 +130,6 @@ export async function DELETE({ request }) {
  * current_use가 있으면 끕니다.
  */
 async function disableCurrentUse(currentUse, userId) {
-	console.log(currentUse, userId);
 	if (!currentUse) return;
 	const { data } = await supabase
 		.from("MOKJANG")
@@ -140,5 +139,4 @@ async function disableCurrentUse(currentUse, userId) {
 		.eq("user_id", userId)
 		.eq("current_use", true);
 
-	// console.log("current_use 업데이트!!!!", data);
 }
