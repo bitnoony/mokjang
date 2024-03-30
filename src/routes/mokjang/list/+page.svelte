@@ -86,7 +86,7 @@
 			modalClose();
 			setTimeout(() => {
 				alert(`성공적으로 ${mokjangModalType} 되었습니다.`);
-				goto('./list');
+				goto('/mokjang/list');
 			}, 10);
 		}
 	}

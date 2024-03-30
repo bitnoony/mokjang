@@ -1,14 +1,13 @@
 <script>
-	import { goto } from "$app/navigation";
-
 	export let data;
 	let userForm;
 
 	async function formSubmit(event) {
-		event.preventDefault(); // 아마도 막힘.
+		event.preventDefault();
 
 		const formData = {
 			id: userForm.id.value,
+			name: userForm.name.value,
 			birthday: userForm.birthday.value,
 			job: userForm.job.value,
 			job_address: userForm.job_address.value,
@@ -31,7 +30,9 @@
 			},
 		});
 
-		if (response.ok) {
+		const isSuccess = await response.json();
+
+		if (response.ok && isSuccess) {
 			alert("적용 되었습니다.");
 		} else {
 			alert("에러가 발생했습니다. 관리자에게 문의하세요.");

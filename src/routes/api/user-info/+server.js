@@ -1,5 +1,6 @@
 import { supabase } from "$lib/supabaseClient";
 import { json } from "@sveltejs/kit";
+import { loadConfigFromFile } from "vite";
 
 export async function POST({ request }) {
 	// formData 사용법
@@ -21,6 +22,7 @@ export async function POST({ request }) {
 	const phone = data["phone"];
 	const memo = data["memo"];
 	const id = data["id"];
+	const name = data["name"];
 
 	// id로 DB에서 유저 정보 조회. USERS
 	// 유저가 있나? 없으면 result = false;
@@ -44,12 +46,31 @@ export async function POST({ request }) {
 			memo,
 		};
 
+		const { data: userData, error: usersError } = await supabase
+			.from("USERS")
+			.upsert({
+				id: insertData.id,
+				mokja_id: insertData.id,
+				name: name,
+				type: "목자", // 목자가 본인 데이터 수정
+				modified_date: new Date().toISOString()
+			})
+			.select();
+
+		if (usersError) {
+			throw usersError;
+		}
+
 		const { data, error } = await supabase
 			.from("USER_INFO")
 			.upsert(insertData)
 			.select();
 
-		if (!error) result = true;
+		if (error) {
+			throw error;
+		} 
+		
+		result = true;
 	} catch (err) {
 		console.error(err, "회원 INSERT 중 에러 발생.");
 	}

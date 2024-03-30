@@ -10,7 +10,7 @@ import { json } from "@sveltejs/kit";
 export async function POST({ request }) {
 	const requestData = await request.json();
 	const { mokjang_name, user_id, current_use } = requestData;
-	let result = false;
+	let result = false; console.log(user_id);
 
 	// data 유효성 검사
 	if (!mokjang_name || !user_id) {
@@ -140,5 +140,5 @@ async function disableCurrentUse(currentUse, userId) {
 		.eq("user_id", userId)
 		.eq("current_use", true);
 
-	console.log("current_use 업데이트!!!!", data);
+	// console.log("current_use 업데이트!!!!", data);
 }
