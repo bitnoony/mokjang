@@ -10,7 +10,7 @@
 	let modalIdx, modalMokjangName, modalArea, modalTag, modalCurrentUse;
 
 	function gotoMokjang(mokjangIdx) {
-		goto(`./${mokjangIdx}`);
+		goto(`/mokjang/${mokjangIdx}`);
 	}
 
 	/**
