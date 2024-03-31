@@ -19,16 +19,16 @@
 		</div>
 		<div class="homepage-feature-particle row">
 			<div class="col-sm-6 col-lg-3">
-				<div class="feature-card">여러 목장 관리</div>
+				<div class="feature-card">내 목장은 한눈에!</div>
 			</div>
 			<div class="col-sm-6 col-lg-3">
-				<div class="feature-card">손쉬운 모임!</div>
+				<div class="feature-card">간편한 모임 관리</div>
 			</div>
 			<div class="col-sm-6 col-lg-3">
-				<div class="feature-card">쉬운 메모와 코멘트</div>
+				<div class="feature-card">목원 관리를 손쉽게!</div>
 			</div>
 			<div class="col-sm-6 col-lg-3">
-				<div class="feature-card">목원의 활동을 한눈에!</div>
+				<div class="feature-card">모임과 목원의 히스토리를 한곳에!</div>
 			</div>
 		</div>
 		<div class="my-3"><hr></div>
@@ -74,9 +74,9 @@
 				</div>
 			</div>
 		</div>
-		<div>
+		<!-- <div>
 			<h1>후원</h1>
-		</div>
+		</div> -->
 		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 			<p class="col-md-4 mb-0 text-body-secondary">© 2024 Company, Inc</p>
 		

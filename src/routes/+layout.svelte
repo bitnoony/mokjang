@@ -4,11 +4,9 @@
 	import bootstrapBundle from "bootstrap/dist/js/bootstrap.bundle.js?url";
 	import "@fortawesome/fontawesome-free/css/all.min.css";
 	import imgLogo from "$lib/assets/logo.png";
-	import { supabase, getUser } from "$lib/supabaseClient";
-	import { page } from '$app/stores';
+	import { getUser, login, logout } from "$lib/supabaseClient";
 	let isHomeLayout = true;
 	let isAdmin = false;
-   
 
 	init();
 
@@ -25,28 +23,6 @@
 			isAdmin = true;
 		} else {
 			isAdmin = false;
-		}
-	}
-
-	async function login() {
-		const PUBLIC_BASE_URL = `${$page.url}login`;
-		const { data, error } = await supabase.auth.signInWithOAuth({
-			provider: "google",
-			options: {
-				queryParams: {
-					access_type: "offline",
-					prompt: "consent",
-				},
-				redirectTo: PUBLIC_BASE_URL,
-				// skipBrowserRedirect: false,
-			},
-		});
-	}
-
-	async function logout() {
-		if (confirm("정말로 로그아웃 하시겠습니까?")) {
-			await supabase.auth.signOut();
-			location.href = "/";
 		}
 	}
 </script>

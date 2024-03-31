@@ -63,6 +63,15 @@
 	margin: 0.5rem 0;
 }
 
+.mokjang-feature-icon {
+	background-color: dodgerblue;
+	padding: 1rem;
+	border-radius: 10px;
+	margin-right: 0.5rem;
+	font-size: normal;
+	color: white;
+}
+
 @media (max-width: 991px) {
 	.homepage-cover-image {
 		filter: brightness(0.7);
