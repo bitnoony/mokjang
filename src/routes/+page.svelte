@@ -86,7 +86,7 @@
 			<ul class="nav col-md-4 justify-content-end">
 			<!-- <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li> -->
 			<!-- <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li> -->
-			<li class="nav-item"><a href="/home/price" class="nav-link px-2 text-body-secondary">Pricing</a></li>
+			<li class="nav-item"><a href="/home/pricing" class="nav-link px-2 text-body-secondary">Pricing</a></li>
 			<li class="nav-item"><a href="/home/faq" class="nav-link px-2 text-body-secondary">FAQs</a></li>
 			<li class="nav-item"><a href="/home/terms" class="nav-link px-2 text-body-secondary">Terms</a></li>
 			<li class="nav-item"><a href="/home/privacy" class="nav-link px-2 text-body-secondary">Privacy</a></li>
