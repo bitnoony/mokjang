@@ -1,37 +1,69 @@
+import { supabase, checkUser } from "$lib/supabaseClient";
 import { goto } from "$app/navigation";
-import { getUser } from "$lib/supabaseClient";
-import { redirect } from "@sveltejs/kit";
 
 export const ssr = false;
-export async function load({ fetch }) {
-	alert("로그인 페이지는 사용되지 않습니다.");
-	goto("/");
-	const user = await getUser();
+export async function load() {
+	// 사용자 정보를 가져온다.
+	const user = await checkUser();
+	const authId = user.id;
 
-	const userId = user?.id;
-	const userName = user?.identities[0].identity_data.full_name;
-	const picture = user?.identities[0].identity_data.picture;
-	const data = {
-		id: userId,
-		name: userName,
-		image: picture,
-	};
+	// 디비에서 사용자 정보를 조회 한다.
+	const { data, error } = await supabase
+		.from("USERS")
+		.select("*")
+		.eq("id", user.id)
+		.maybeSingle();
 
-	if (userId) {
-		// 서버에 회원가입 API 호출을 하는 함수.
-		const response = await fetch(`/api/users`, {
-			method: "POST",
-			body: JSON.stringify(data),
-			headers: {
-				"content-type": "application/json",
-			},
-		});
+	const userId = data?.id ?? "";
 
-		if (response.ok) {
-			// 로그인이 되었으면 (userId 가있으면) user-form으로 redirect
-			throw redirect(302, "./user-form");
-		} else {
-			console.error("회원가입 중, 오류가 발생했습니다.", response);
+	if (userId === authId) {
+		// 만약 정보가 있으면, 목장으로 넘긴다.
+		goto("/mokjang/list");
+	} else if (userId === "") {
+		// 만약 정보가 없으면, 목자 정보를 넣고 목자 정보 데이터로 넘긴다.
+		const { full_name, picture, email } = getUserData(user)
+		try {
+			// USERS 테이블 insert
+			let { error: usersError } = await supabase
+				.from("USERS")
+				.upsert({
+					id: authId,
+					mokja_id: authId,
+					name: full_name,
+					profile_image: picture,
+					type: "목자", // 목자가 본인 데이터 수정
+				});
+			if (usersError) throw usersError;
+
+			// USER_INFO 테이블 insert
+			let { error: userInfoError } = await supabase
+				.from("USER_INFO")
+				.upsert({
+					id: authId,
+					email: email
+				});
+			if (userInfoError) throw userInfoError;
+
+			goto("/user-form");
+		} catch (e) {
+			console.error(e);
+			alert("로그인 중 오류가 발생했습니다.\n관리자에게 문의하세요.");
+			location.href = "/";
 		}
+	} else {
+		alert("정상적이지 않은 접근 발견.\n관리자에게 문의하세요.");
+		await supabase.auth.signOut();
+		location.href = "/";
 	}
+}
+
+function getUserData(user) {
+	const { user_metadata } = user;
+	const {
+		full_name,
+		picture,
+		email
+	} = user_metadata;
+
+	return { full_name, picture, email }
 }

@@ -1,10 +1,11 @@
 <!-- script -->
 <script>
-	import logo from "$lib/assets/logo.png";
 	import "bootstrap/dist/css/bootstrap.css";
 	import bootstrapBundle from "bootstrap/dist/js/bootstrap.bundle.js?url";
 	import "@fortawesome/fontawesome-free/css/all.min.css";
+	import imgLogo from "$lib/assets/logo.png";
 	import { supabase, getUser } from "$lib/supabaseClient";
+	import { page } from '$app/stores';
 	let isHomeLayout = true;
 	let isAdmin = false;
    
@@ -28,6 +29,7 @@
 	}
 
 	async function login() {
+		const PUBLIC_BASE_URL = `${$page.url}login`;
 		const { data, error } = await supabase.auth.signInWithOAuth({
 			provider: "google",
 			options: {
@@ -35,11 +37,10 @@
 					access_type: "offline",
 					prompt: "consent",
 				},
-				// redirectTo: PUBLIC_BASE_URL,
+				redirectTo: PUBLIC_BASE_URL,
 				// skipBrowserRedirect: false,
 			},
 		});
-		// console.log(data, error);
 	}
 
 	async function logout() {
@@ -60,7 +61,7 @@
 			<div class="left-part">
 				<div class="title-wrap">
 					<a href="/">
-						<img src={logo} alt="logo" />
+						<img src={imgLogo} alt="logo" />
 						<h3 class="m-0 fw-bold">MOKJANG</h3>
 					</a>
 				</div>

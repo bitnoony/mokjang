@@ -192,7 +192,7 @@
 	<!-- 모달 -->
 	<div class="modal-center d-none" bind:this={modal}>
 		<div class="modal-content rounded-4 shadow bg-white">
-			<div class="modal-header p-3 pb-2 border-bottom-0">
+			<div class="modal-header p-3 pb-2 justify-content-between border-bottom-0">
 				<h1 class="fw-bold mb-0 fs-4">목장 {mokjangModalType}</h1>
 				<button type="button" class="btn-close py-2 fs-4" on:click={modalClose}
 				></button>
