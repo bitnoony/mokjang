@@ -79,17 +79,11 @@
 		</div> -->
 		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
 			<p class="col-md-4 mb-0 text-body-secondary">© 2024 Company, Inc</p>
-		
-			<a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-				<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-			</a>
 			<ul class="nav col-md-4 justify-content-end">
-			<!-- <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li> -->
-			<!-- <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li> -->
-			<li class="nav-item"><a href="/home/pricing" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-			<li class="nav-item"><a href="/home/faq" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-			<li class="nav-item"><a href="/home/terms" class="nav-link px-2 text-body-secondary">Terms</a></li>
-			<li class="nav-item"><a href="/home/privacy" class="nav-link px-2 text-body-secondary">Privacy</a></li>
+				<li class="nav-item"><a href="/home/pricing" class="nav-link px-2 text-body-secondary">요금제</a></li>
+				<li class="nav-item"><a href="/home/inquire" class="nav-link px-2 text-body-secondary">문의</a></li>
+				<li class="nav-item"><a href="/home/terms" class="nav-link px-2 text-body-secondary">이용약관</a></li>
+				<li class="nav-item"><a href="/home/privacy" class="nav-link px-2 text-body-secondary">개인정보처리방침</a></li>
 			</ul>
 		</footer>
 	</div>

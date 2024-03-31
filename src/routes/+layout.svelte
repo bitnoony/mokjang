@@ -44,6 +44,9 @@
 			</div>
 			<div class="middle-part">&nbsp;</div>
 			<div class="right-part">
+				<!-- <button class="btn btn-outline-secondary">후원</button> -->
+				<!-- <button class="btn btn-outline-secondary">요금제</button> -->
+				<!-- <button class="btn btn-outline-secondary">문의</button> -->
 				<button class="btn btn-outline-success" on:click={login}>
 					<i class="fa-solid fa-right-to-bracket"></i> 로그인
 				</button>
