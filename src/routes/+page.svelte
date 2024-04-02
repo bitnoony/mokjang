@@ -1,6 +1,18 @@
 <script>
+	import { getUser } from "$lib/supabaseClient";
 	import imgWooncloud from '$lib/assets/wooncloud_logo.png';
 	import imgBitnoony from '$lib/assets/noony_profile.png';
+	import title from '$lib/utils/LayoutTitle';
+
+	init();
+
+	async function init() {
+		const user = await getUser();
+		if (user) {
+			const {user_metadata: {name}} = user;
+			$title = `${name}의 MOKJANG`;
+		}
+	}
 </script>
 
 <svelte:head>

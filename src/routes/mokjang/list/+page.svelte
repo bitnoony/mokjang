@@ -1,13 +1,39 @@
 <script>
+	import { supabase } from "$lib/supabaseClient";
 	import imgPlzAddMokjang from '$lib/assets/plz_add_mokjang_300.png';
 	import { goto } from "$app/navigation";
+	import title from '$lib/utils/LayoutTitle';
 
 	export let data;
-	const { mokjangList, userId } = data;
-
+	$title = '목장 리스트';
+	let { userId, mokjangList } = data;
 	let modal;
 	let mokjangModalType;
 	let modalIdx, modalMokjangName, modalArea, modalTag, modalCurrentUse;
+	$: mokjangList;
+
+	
+	async function refreshList() {
+		mokjangList = await getMojangList(userId)
+		console.log(mokjangList);
+	}
+
+	async function getMojangList(userId) {
+		let { data: MOKJANG, error } = await supabase
+		.from("MOKJANG")
+		.select("*")
+		.eq("user_id", userId)
+		.is("deleted_date", null)
+		.order("current_use", { ascending: false })
+		.order("created_date", { ascending: false });
+
+		if (error) {
+			alert("목장 정보를 가져오는 중 문제가 발생했습니다.\n관리자에게 문의하세요.");
+			return [];
+		}
+
+		return MOKJANG;
+	}
 
 	function gotoMokjang(mokjangIdx) {
 		goto(`/mokjang/${mokjangIdx}`);
@@ -84,9 +110,9 @@
 
 		if (response.ok) {
 			modalClose();
-			setTimeout(() => {
+			setTimeout(async () => {
+				await refreshList();
 				alert(`성공적으로 ${mokjangModalType} 되었습니다.`);
-				goto('/mokjang/list');
 			}, 10);
 		}
 	}
@@ -120,11 +146,13 @@
 			},
 		});
 
+		const body = await response.json();
+
 		if (response.ok) {
 			modalClose();
-			setTimeout(() => {
+			setTimeout(async () => {
+				await refreshList();
 				alert(`성공적으로 삭제 되었습니다.`);
-				location.reload();
 			}, 10);
 		}
 	}
@@ -151,7 +179,9 @@
 		{#each mokjangList as _, i}
 			{#if i % 4 === 0}
 				<div class="row">
-					{#each [...mokjangList].splice(i, 4) as mokjang, index (index)}
+					{#each [...mokjangList].splice(i, 4) as mokjang, index (mokjang.idx)}
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<!-- svelte-ignore a11y-no-static-element-interactions -->
 						<div
 							data-idx={mokjang.idx}
 							class="p-2 col-lg-3 col-md-6 col-sm-12"
@@ -242,8 +272,8 @@
 				</div>
 				<button
 					class="w-100 mb-2 btn btn-lg rounded-3 btn-primary"
-					on:click|once={modalSubmit}>확인</button
-				>
+					on:click={modalSubmit}>확인
+				</button>
 				{#if mokjangModalType !== "추가"}
 					<hr class="my-4" />
 					<div class="d-flex justify-content-end">

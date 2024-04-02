@@ -1,9 +1,11 @@
 <script>
 	import MeetingList from "./MeetingList.svelte";
 	import MokwonList from "./MokwonList.svelte";
+	import title from '$lib/utils/LayoutTitle';
 
 	export let data;
 	const { mokjang, mokjaId } = data;
+	$title = mokjang.mokjang_name;
 </script>
 
 <svelte:head>

@@ -1,4 +1,6 @@
 <script>
+    import title from '$lib/utils/LayoutTitle';
+	$title = "주일설교녹취";
     export let data;
     const length = data.record.length;
 

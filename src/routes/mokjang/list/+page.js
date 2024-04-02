@@ -9,6 +9,7 @@ export async function load() {
 		.from("MOKJANG")
 		.select("*")
 		.eq("user_id", userId)
+		.is("deleted_date", null)
 		.order("current_use", { ascending: false })
 		.order("created_date", { ascending: false });
 

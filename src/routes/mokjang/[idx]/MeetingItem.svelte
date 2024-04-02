@@ -55,22 +55,6 @@
 	</div>
 </a>
 
-<!-- 
-<a href="#" class="list-group-item list-group-item-action" aria-current="true" >
-    <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1">{title}</h5>
-        <small>{date}</small>
-    </div>
-    <p class="mb-1">{place}</p>
-    <small>
-        <span>[{memberCount}]</span>
-        {#each members as member}
-            <span>'{member}'</span>&nbsp;
-        {/each}
-    </small>
-</a>
- -->
-
 <style>
 	a.meeting-list-item {
 		display: flex;

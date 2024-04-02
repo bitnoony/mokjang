@@ -4,8 +4,9 @@
 	import MokwonHistoryList from "../../mokwon/MokwonHistoryList.svelte";
 	import Memo from "./Memo.svelte";
 	import { getMokwonListInMokjang } from "../../mokwon/mokwon.js";
+	import title from '$lib/utils/LayoutTitle';
 	export let data;
-	let { meeting, userId, mokjangIdx } = data;
+	let { meeting, userId, mokjangIdx, mokjang_name } = data;
 	let { idx: meetingIdx, meeting_title, meeting_date, place, memo } = meeting;
 	let mokwonInfoComponent;
 	let mokwonHistoryListComponent;
@@ -13,6 +14,7 @@
 	let participantList = [];
 	$: mokwonList;
 	$: participantList;
+	$title = `${mokjang_name} | ${meeting_title}`;
 
 	init();
 	
@@ -131,6 +133,10 @@
 		mokwonHistoryListComponent.getMokwonHistory(mokwonId);
 	}
 </script>
+
+<svelte:head>
+	<title>{mokjang_name} | {meeting_title}</title>
+</svelte:head>
 
 <section class="meeting-section">
 	<div class="meeting-container">

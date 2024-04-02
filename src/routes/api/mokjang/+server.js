@@ -24,7 +24,6 @@ export async function POST({ request }) {
 	// supabase 데이터 저장.
 	try {
 		await disableCurrentUse(current_use, user_id);
-
 		await supabase.from("MOKJANG").insert(requestData);
 	} catch (err) {
 		const errorMsg = "목장 생성 중 에러가 발생했습니다.";
@@ -109,7 +108,10 @@ export async function DELETE({ request }) {
 	try {
 		await supabase
 			.from("MOKJANG")
-			.delete()
+			.update({
+				deleted_date: new Date().toISOString(),
+				current_use: false,
+			})
 			.eq("idx", idx)
 			.eq("user_id", user_id);
 	} catch (err) {

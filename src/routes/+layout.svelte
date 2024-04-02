@@ -6,9 +6,9 @@
 	import imgLogo from "$lib/assets/logo.png";
 	import { supabase, getUser } from "$lib/supabaseClient";
 	import { page } from '$app/stores';
+	import title from '$lib/utils/LayoutTitle';
 	let isHomeLayout = true;
 	let isAdmin = false;
-   
 
 	init();
 
@@ -97,7 +97,7 @@
 				{/if}
 			</div>
 			<div class="middle-part">
-				<span class="fw-bold fs-3">목장</span>
+				<span class="fw-bold fs-3">{$title}</span>
 			</div>
 			<div class="right-part">
 				<a href="/mokwon" class="btn btn-outline-secondary">

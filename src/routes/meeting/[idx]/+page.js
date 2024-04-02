@@ -19,5 +19,11 @@ export async function load({ params, url }) {
 		window.history.back();
 	}
 
-	return { meeting: MEETING, userId, mokjangIdx };
+	let { data: {mokjang_name}, error } = await supabase
+		.from('MOKJANG')
+		.select('*')
+        .eq('idx', mokjangIdx)
+		.maybeSingle();
+
+	return { meeting: MEETING, userId, mokjangIdx, mokjang_name };
 }

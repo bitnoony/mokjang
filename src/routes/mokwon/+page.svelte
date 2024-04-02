@@ -3,6 +3,8 @@
 	import MokwonInfo from "./mokwonInfo.svelte";
 	import MokwonHistoryList from "./MokwonHistoryList.svelte";
 	import { getMokwonList } from "./mokwon.js";
+	import title from '$lib/utils/LayoutTitle';
+	$title = "목원 정보";
 
 	export let data;
 	let mokwonInfoComponent;
