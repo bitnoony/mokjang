@@ -96,3 +96,15 @@
 	border-top: 0;
 	height: calc(100% - 42px);
 }
+
+.participant-count {
+	border: 1px solid lightgray;
+	border-radius: 4px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #6c757d;
+	color: white;
+	font-weight: bold;
+}

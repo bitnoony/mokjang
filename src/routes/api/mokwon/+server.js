@@ -33,6 +33,7 @@ export async function GET({ url }) {
 export async function POST({ request }) {
 	const data = await request.json();
 	let result = false;
+	let userId = "";
 
 	// data 안에 name과 type이 있는가? validation
 	if (!data.name || !data.type) {
@@ -52,6 +53,7 @@ export async function POST({ request }) {
 		if (userData.length === 0) throw "insert mokwon error";
 
 		const { id } = userData[0];
+		userId = id;
 
 		// 유저 정보 추가 (목원)
 		await insertUserInfo(data, id);
@@ -62,13 +64,13 @@ export async function POST({ request }) {
 	}
 
 	result = true;
-	return json({ isSuccess: result });
+	return json({ isSuccess: result, userId });
 }
 
-async function insertUser({ name, type, mokja_id }) {
+async function insertUser({ name, type, mokja_id, profile_image }) {
 	const { data, error } = await supabase
 		.from("USERS")
-		.insert([{ name, type, mokja_id }])
+		.insert([{ name, type, mokja_id, profile_image }])
 		.select();
 
 	return data;
@@ -119,6 +121,7 @@ export async function PUT({ request }) {
 			.update({
 				name: data.name,
 				type: data.type,
+				profile_image: data.profile_image,
 				modified_date: new Date().toISOString(),
 			})
 			.eq("id", data.id);

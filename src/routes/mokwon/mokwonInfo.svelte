@@ -1,6 +1,10 @@
 <script>
-	import imgDefaultProfile from "$lib/assets/sheep_profile_128.png";
+	import imgDefaultProfile from "$lib/assets/empty_profile.png";
 	import { createEventDispatcher } from "svelte";
+	import imageCompression from 'browser-image-compression';
+	import { toasts }  from "svelte-toasts";
+	import Toast from "$lib/components/toast/toast.svelte";
+	import { supabase } from '$lib/supabaseClient.js';
 	const dispatch = createEventDispatcher();
 
 	export let mokja_id;
@@ -37,6 +41,7 @@
 			entrance: info?.entrance ?? "",
 			memo: info?.memo ?? "",
 			profile_image: profileImage,
+			uploadFile: ""
 		};
 	}
 
@@ -56,7 +61,7 @@
 	async function saveMokwon() {
 		// validate
 		if (!mokwonInfo.name) {
-			alert("이름은 필수입니다.");
+			toasts.add({ type: 'warning', description: '이름은 필수입니다.',});
 			return;
 		}
 
@@ -86,20 +91,32 @@
 			},
 		});
 
-		const { isSuccess } = await response.json();
+		const {userId, isSuccess} = await response.json();
+		let profileImage;
+		if (mokwonInfo.uploadFile) {
+			profileImage = await uploadToServer (mokwonInfo.uploadFile, userId);
+			await supabase.from('USERS')
+			.update({ profile_image: profileImage ?? "" })
+			.eq('id', userId);
+		}
 
 		if (isSuccess) {
 			dispatch("message");
-			mokwonInfo = getMokwonInfo(mokwonInfo.id);
-			alert("목원이 추가 되었습니다.");
+			mokwonInfo = getMokwonInfo(userId);
+			toasts.add({ type: 'success', description: '목원이 추가 되었습니다.',});
 		}
 	}
 
 	async function modifyMokwon() {
 		// validate
 		if (!mokwonInfo.name) {
-			alert("이름은 필수입니다.");
+			toasts.add({ type: 'warning', description: '이름은 필수입니다.',});
 			return;
+		}
+		
+		let profileImage;
+		if (mokwonInfo.uploadFile) {
+			profileImage = await uploadToServer (mokwonInfo.uploadFile);
 		}
 
 		const data = {
@@ -119,6 +136,7 @@
 			baptism: mokwonInfo.baptism,
 			entrance: mokwonInfo.entrance,
 			memo: mokwonInfo.memo,
+			profile_image: profileImage ?? mokwonInfo.profile_image
 		};
 
 		const response = await fetch("/api/mokwon", {
@@ -134,7 +152,7 @@
 		if (isSuccess) {
 			dispatch("message");
 			mokwonInfo = getMokwonInfo(mokwonInfo.id);
-			alert("수정 되었습니다.");
+			toasts.add({ type: 'success', description: '수정 되었습니다.',});
 		}
 	}
 
@@ -152,16 +170,82 @@
 		if (isSuccess) {
 			dispatch("message");
 			mokwonInfo = getMokwonInfo();
-			alert("삭제 되었습니다.");
+			toasts.add({ type: 'success', description: '삭제 되었습니다.',});
 		}
 	}
 
 	function clickFile(e) {
+		uploadImage.value = "";
 		uploadImage.click();
 	}
 
-	function changeImage(e) {
-		console.log(e);
+	async function handleImageCompression(e) {
+		const imageFile = e.target.files[0];
+		// console.log('originalFile instanceof Blob', imageFile instanceof Blob); // true
+		// console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+
+		const options = {
+			maxSizeMB: 1,
+			maxWidthOrHeight: 1920,
+			useWebWorker: true,
+		}
+
+		try {
+			toasts.add({ type: 'info', description: '파일을 압축중입니다. 잠시만 기다려주세요.',});
+			mokwonInfo.uploadFile = await imageCompression(imageFile, options);
+
+			const reader = new FileReader();
+			reader.readAsDataURL(mokwonInfo.uploadFile);
+			reader.onload = function () {
+				mokwonInfo.profile_image = reader.result;
+			};
+			reader.onerror = function (error) {
+				console.log('Error: ', error);
+			};
+			// console.log('uploadFile instanceof Blob', uploadFile instanceof Blob); // true
+			// console.log(`uploadFile size ${uploadFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+		} catch (error) {
+			alert("파일 압축 중 문제가 발생했습니다.\n관리자에게 문의하세요.");
+			console.error(error);
+		}
+	}
+
+	/**
+	 * 수파베이스에 파일을 업로드 한 후, path를 반환합니다.
+	 * @param file blob file for upload
+	 */
+	async function uploadToServer(file, id) {
+		const mokwonId = (id ?? mokwonInfo?.id);
+
+		if (!mokja_id || !mokwonId) {
+			console.error("mokja_id: ", mokja_id, "mokwon_id: ", mokwonId);
+			throw "no mokja_id or mokwon_id";
+		}
+		
+		// 버킷을 검색합니다.
+		try {
+			const fileName = `${mokwonId}.${(file.name).split(".")[1]}`;
+			const { data: {path}, error } = await supabase
+			.storage
+			.from('mokwon_profile')
+			.upload(`${mokja_id}/${fileName}`, file, {
+				cacheControl: '3600',
+				upsert: true
+			});
+			
+			if (!path) throw "no path";
+
+			
+			const { data: {publicUrl} } = supabase
+				.storage
+				.from('mokwon_profile')
+				.getPublicUrl(path)
+
+			return `${publicUrl}?v=${Date.now()}`;
+		} catch (error) {
+			alert("업로드 중 문제가 발생했습니다. 관리자에게 문의하세요.")
+			console.error(error);
+		}
 	}
 </script>
 
@@ -191,7 +275,7 @@
 			bind:this={profile}
 			on:click={clickFile}
 		></button>
-		<input type="file" bind:this={uploadImage} hidden on:change={changeImage} />
+		<input type="file" bind:this={uploadImage} hidden on:change={handleImageCompression} />
 		<div class="primary-info-divide">
 			<div>
 				<div class="mokwon-name input-group input-group-sm">
@@ -343,6 +427,7 @@
 		></textarea>
 	</div>
 </div>
+<Toast />
 
 <style>
 	.mokwon-primary-info-row {

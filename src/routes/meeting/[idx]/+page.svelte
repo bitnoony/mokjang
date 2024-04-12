@@ -143,7 +143,7 @@
 		<div class="meeting-info-wrap">
 			<div class="meeting-info-group">
 				<div class="meeting-name d-flex">
-					<div class="w-50 pe-1 d-flex input-group">
+					<div class="w-75 pe-1 d-flex input-group">
 						<span class="input-group-text">모임이름</span>
 						<input
 							name="meeting_title"
@@ -154,8 +154,10 @@
 							on:change={updateMeeting}
 						/>
 					</div>
-					<div class="w-50 ps-1 d-flex">
-						<div>목원 수: {participantList.length}</div>
+					<div class="w-25 ps-1 d-flex">
+						<div class="participant-count">
+							목원 수: {participantList.length}
+						</div>
 					</div>
 				</div>
 				<div class="meeting-info">
