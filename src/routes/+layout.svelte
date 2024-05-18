@@ -29,7 +29,8 @@
 	}
 
 	async function login() {
-		const PUBLIC_BASE_URL = `${$page.url}login`;
+		const pageUrl = ($page.url).replace(/(^https?:\/\/)w{3}\.(.+)$/, '$1$2');
+		const PUBLIC_BASE_URL = `${pageUrl}login`;
 		const { data, error } = await supabase.auth.signInWithOAuth({
 			provider: "google",
 			options: {

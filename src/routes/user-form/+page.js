@@ -1,4 +1,3 @@
-import { goto } from "$app/navigation";
 import { supabase, checkUser } from "$lib/supabaseClient";
 export const ssr = false;
 
