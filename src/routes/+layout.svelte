@@ -83,18 +83,6 @@
 					<i class="fa-solid fa-layer-group"></i>
 					목장 리스트
 				</a>
-				<a href="/summary"
-					class="btn btn-outline-secondary">
-					<i class="fa-regular fa-note-sticky"></i>
-					주일설교녹취
-			    </a>
-				{#if isAdmin}
-				   <a href="/summary/insert"
-				    class="btn btn-primary">
-				    <i class="fa-regular fa-note-sticky"></i>
-				     녹취입력
-		      	</a>
-				{/if}
 			</div>
 			<div class="middle-part">
 				<span class="fw-bold fs-3">{$title}</span>
